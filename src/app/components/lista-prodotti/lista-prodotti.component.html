@@ -1,33 +1,37 @@
 <div class="container mt-4">
 	<div class="row justify-content-center">
-	  <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let product of prodotti">
-		<div class="card">
-		  <div id="carousel-{{ product.id }}" class="carousel slide" data-bs-ride="carousel">
-			<div class="carousel-inner">
-			  <div *ngFor="let image of product.images.split(';'); let i = index" [class]=" 'carousel-item ' + (i === 0 ? 'active' : '') ">
-				<img class="d-block w-100" [src]="'https://storage.googleapis.com/projectworkpascal/' + image" alt="{{ product.title }}" />
+	  <!-- Inizio del ciclo *ngFor per generare le card -->
+	  <ng-container *ngFor="let product of prodotti">
+		<div class="col-lg-3 col-md-5 col-sm-12 mb-4">
+		  <div class="card w-100 h-100">
+			<div id="carousel-{{ product.id }}" class="carousel slide" data-bs-ride="carousel">
+			  <div class="carousel-inner">
+				<div *ngFor="let image of product.images.split(';'); let i = index" [class]=" 'carousel-item ' + (i === 0 ? 'active' : '') ">
+				  <img class="d-block w-100" [src]="'https://storage.googleapis.com/projectworkpascal/' + image" alt="{{ product.title }}" />
+				</div>
 			  </div>
+			  <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel-' + product.id" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel-' + product.id" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			  </button>
 			</div>
-			<button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel-' + product.id" data-bs-slide="prev">
-			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			  <span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel-' + product.id" data-bs-slide="next">
-			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			  <span class="visually-hidden">Next</span>
-			</button>
-		  </div>
-		  <div class="card-body">
-			<h5 class="card-title">{{ product.title }}</h5>
-			<p class="card-text"><strong>Prezzo:</strong> {{ product.price }} €</p>
-			<p class="card-text"><strong>Stelle:  </strong>
-			  <ng-container *ngFor="let star of getStarsArray(product.stars)">
-				<span class="bi" [class.bi-star-fill]="star.isFilled" [class.bi-star-half]="star.isHalf" [class.text-warning]="star.isFilled || star.isHalf"></span>
-			  </ng-container>
-			</p>
+			<div class="card-body">
+			  <h5 class="card-title">{{ product.title }}</h5>
+			  <p class="card-text"><strong>Prezzo:</strong> {{ product.price }} €</p>
+			  <p class="card-text"><strong>Stelle:  </strong>
+				<ng-container *ngFor="let star of getStarsArray(product.stars)">
+				  <span class="bi" [class.bi-star-fill]="star.isFilled" [class.bi-star-half]="star.isHalf" [class.text-warning]="star.isFilled || star.isHalf"></span>
+				</ng-container>
+			  </p>
+			</div>
 		  </div>
 		</div>
-	  </div>
+	  </ng-container>
+	  <!-- Fine del ciclo *ngFor -->
 	</div>
   </div>
   

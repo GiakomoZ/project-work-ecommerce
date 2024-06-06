@@ -1,27 +1,16 @@
 <div class="container mt-4">
-	<div class="row justify-content-center">
-	  <div class="col-md-4 mb-4" *ngFor="let categoria of categorie">
-		<div class="card h-100">
-		  <div id="carousel-{{ categoria.id }}" class="carousel slide" data-bs-ride="carousel">
-			<div class="carousel-inner">
-			  <div *ngFor="let image of categoria.image.split(';'); let i = index" [class]=" 'carousel-item ' + (i === 0 ? 'active' : '') ">
-				<img class="d-block w-100" [src]="'https://storage.googleapis.com/projectworkpascal/' + image" alt="{{ categoria.name }}" />
-			  </div>
+	<div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2 justify-content-center">
+		<ng-container *ngFor="let categoria of categorie">
+			<div class="mb-4">
+				<app-card-categoria
+				[id]="categoria.id"
+				[nome]="categoria.name"
+				[image]="categoria.image"
+			></app-card-categoria>
 			</div>
-			<button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel-' + categoria.id" data-bs-slide="prev">
-			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			  <span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel-' + categoria.id" data-bs-slide="next">
-			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			  <span class="visually-hidden">Next</span>
-			</button>
-		  </div>
-		  <div class="card-body">
-			<h5 class="card-title">{{ categoria.name }}</h5>
-		  </div>
-		</div>
-	  </div>
+		</ng-container>
 	</div>
-  </div>
-  
+</div>
+
+
+
