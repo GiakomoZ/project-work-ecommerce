@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento con Carta di Credito</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h2 class="mb-4">Aggiungi carta di credito</h2>
+      <form>
+        <div class="form-group">
+          <label for="cardNumber">Numero di Carta di Credito</label>
+          <input type="text" class="form-control" id="cardNumber" placeholder="Inserisci il numero della carta" required>
+        </div>
+        <div class="form-group">
+          <label for="cardHolder">Intestatario della Carta</label>
+          <input type="text" class="form-control" id="cardHolder" placeholder="Inserisci il nome dell'intestatario" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="expirationDate">Scadenza</label>
+            <input type="text" class="form-control" id="expirationDate" placeholder="MM/AA" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="cvv">CVV</label>
+            <input type="text" class="form-control" id="cvv" placeholder="CVV" required>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-secondary">Annulla</button>
+          <button type="submit" class="btn btn-primary">Paga</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
