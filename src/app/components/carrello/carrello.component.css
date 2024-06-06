@@ -1,0 +1,13 @@
+
+.cart-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+  }
+  .cart-total {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .carrello{
+    background-color: beige;
+  }

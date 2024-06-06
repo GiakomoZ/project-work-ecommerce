@@ -1,1 +1,50 @@
-<p>carrello works!</p>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrello Online</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container-fluid mt-5">
+    <h2 class="mb-4 text-center carrello">Benvenuto nel tuo carrello</h2>
+    <div class="row cart-item">
+      <div class="col-md-2">
+        <img src="https://via.placeholder.com/100" class="img-fluid" alt="Prodotto">
+      </div>
+
+      <!-- Dettagli prodotti, da fare un ng for per tutti gli elementi di un ipotetico array prodotti[] -->
+      <div class="col-md-4">
+        <h5>Nome del Prodotto 1</h5>
+        <p>Descrizione breve del prodotto.</p>
+      </div>
+      <div class="col-md-2">
+        <input type="number" class="form-control" value="1" min="1">
+      </div>
+      <div class="col-md-2">
+        <p>Prezzo</p>
+      </div>
+      <div class="col-md-2 text-right">
+        <button class="btn btn-danger">Rimuovi</button>
+      </div>
+    </div>
+
+    <!-- Totale carrello -->
+    <div class="row mt-4">
+      <div class="col-md-6 offset-md-6 text-right">
+        <p class="cart-total">Totale: Prezzo</p>
+        <button class="btn btn-secondary">Home</button>
+        <button class="btn btn-primary">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
