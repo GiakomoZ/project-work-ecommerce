@@ -8,17 +8,7 @@
 		<div class="card-body">
 			<h5 class="card-title">{{ titolo }}</h5>
 			<p class="card-text"><strong>Prezzo:</strong> {{ prezzo|currency:"EUR" }}</p>
-			<p class="card-text">
-				<strong>Stelle: </strong>
-				<ng-container *ngFor="let star of getStarsArray(rating)">
-					<span
-						class="bi"
-						[class.bi-star-fill]="star.isFilled"
-						[class.bi-star-half]="star.isHalf"
-						[class.text-warning]="star.isFilled || star.isHalf"
-					></span>
-				</ng-container>
-			</p>
+			<app-stelle-rating></app-stelle-rating>
 		</div>
 		<div class="text-center">
 			<button class="btn">Maggiori Informazioni</button>
