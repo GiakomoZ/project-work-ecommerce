@@ -19,8 +19,8 @@
 		  </div>
 		  <div class="card-body">
 			<h5 class="card-title">{{ product.title }}</h5>
-			<p class="card-text"><strong>Price:</strong> {{ product.price }} €</p>
-			<p class="card-text"><strong>Stars:  </strong>
+			<p class="card-text"><strong>Prezzo:</strong> {{ product.price }} €</p>
+			<p class="card-text"><strong>Stelle:  </strong>
 			  <ng-container *ngFor="let star of getStarsArray(product.stars)">
 				<span class="bi" [class.bi-star-fill]="star.isFilled" [class.bi-star-half]="star.isHalf" [class.text-warning]="star.isFilled || star.isHalf" ></span>
 			  </ng-container>
