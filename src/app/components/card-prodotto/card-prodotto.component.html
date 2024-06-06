@@ -1,0 +1,32 @@
+<div class="mb-4">
+		  <div class="card w-100 h-100">
+			<div id="carousel-{{ id }}" class="carousel slide" data-bs-ride="carousel">
+			  <div class="carousel-inner">
+				<div *ngFor="let image of immagini.split(';'); let i = index" [class]=" 'carousel-item ' + (i === 0 ? 'active' : '') ">
+				  <img class="d-block w-100" [src]="'https://storage.googleapis.com/projectworkpascal/' + image" alt="{{ titolo }}" />
+				</div>
+			  </div>
+			  <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel-' + id" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel-' + id" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			  </button>
+			</div>
+			<div class="card-body">
+			  <h5 class="card-title">{{ titolo }}</h5>
+			  <p class="card-text"><strong>Prezzo:</strong> {{ prezzo }} €</p>
+			  <p class="card-text"><strong>Stelle:  </strong>
+				<ng-container *ngFor="let star of getStarsArray(rating)">
+				  <span class="bi" [class.bi-star-fill]="star.isFilled" [class.bi-star-half]="star.isHalf" [class.text-warning]="star.isFilled || star.isHalf"></span>
+				</ng-container>
+			  </p>
+			</div>
+			<div class="text-center">
+			<button class="btn" >Maggiori Informazioni</button>
+			<button class="btn" >+</button>
+			</div>
+		  </div>
+		</div>

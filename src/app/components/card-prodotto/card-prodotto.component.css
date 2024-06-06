@@ -1,0 +1,29 @@
+.card {
+	width: 100%; /* Larghezza fissa al 100% del contenitore padre */
+	height: 100%; /* Altezza fissa al 100% del contenitore padre */
+  }
+  
+  .carousel-item img {
+	/*height: 300px; /* Altezza fissa delle immagini all'interno del carousel */
+	width: 200px;
+    object-fit: cover; /* Assicura che le immagini si adattino all'area disponibile */
+  }
+  
+  .card-body {
+	text-align: center; /* Allinea il testo al centro */
+  }
+  
+  .btn{
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    margin: 5px;
+    transition: all 0.25s ease-in-out;
+    
+    &:hover {
+      background-color: #e9ecef;
+      border-color: #dee2e6;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+  }
