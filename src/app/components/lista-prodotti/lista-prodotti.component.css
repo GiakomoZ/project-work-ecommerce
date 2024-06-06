@@ -12,3 +12,17 @@
 	text-align: center; /* Allinea il testo al centro */
   }
   
+  .btn{
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    margin: 5px;
+    transition: all 0.25s ease-in-out;
+    
+    &:hover {
+      background-color: #e9ecef;
+      border-color: #dee2e6;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+  }

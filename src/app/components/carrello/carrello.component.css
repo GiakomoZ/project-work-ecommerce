@@ -1,13 +1,5 @@
-
-.cart-item {
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
+@media (min-width: 1025px) {
+  .h-custom {
+  height: 100vh !important;
   }
-  .cart-total {
-    font-weight: bold;
-    font-size: 1.2em;
-  }
-
-  .carrello{
-    background-color: beige;
   }
