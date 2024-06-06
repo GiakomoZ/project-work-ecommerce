@@ -7,7 +7,7 @@
 		></app-carosello-immagini>
 		<div class="card-body">
 			<h5 class="card-title">{{ titolo }}</h5>
-			<p class="card-text"><strong>Prezzo:</strong> {{ prezzo }} €</p>
+			<p class="card-text"><strong>Prezzo:</strong> {{ prezzo|currency:"EUR" }}</p>
 			<p class="card-text">
 				<strong>Stelle: </strong>
 				<ng-container *ngFor="let star of getStarsArray(rating)">
