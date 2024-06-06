@@ -20,4 +20,26 @@ export class ListaProdottiComponent implements OnInit{
 			this.prodotti = data;
 		});
 	}
+	getStarsArray(stars: number): any[] {
+		const fullStars = Math.floor(stars);
+		const halfStars = stars % 1 >= 0.5 ? 1 : 0;
+		const emptyStars = 5 - fullStars - halfStars;
+	  
+		const starsArray = [];
+	  
+		for (let i = 0; i < fullStars; i++) {
+		  starsArray.push({ isFilled: true, isHalf: false });
+		}
+	  
+		if (halfStars === 1) {
+		  starsArray.push({ isFilled: false, isHalf: true });
+		}
+	  
+		for (let i = 0; i < emptyStars; i++) {
+		  starsArray.push({ isFilled: false, isHalf: false });
+		}
+	  
+		return starsArray;
+	  }
+	  
 }
