@@ -1,6 +1,6 @@
 import { Prodotto } from './prodotto';
 
-export interface ProductResponse {
+export interface ProdottoRisposta {
   result: Prodotto[];
   totalRecordsCount: number;
 }

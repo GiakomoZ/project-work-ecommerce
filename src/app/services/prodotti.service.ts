@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Prodotto } from '../models/prodotto';
 import { risposta } from '../models/rispostaApi';
-import { ProductResponse } from '../models/productResponse';
+import { ProdottoRisposta } from '../models/ProdottoRisposta';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class ProdottiService {
   constructor(private http: HttpClient) {}
 
   getProducts() {
-    return this.http.get<ProductResponse>(this.apiUrl).pipe(
-      map((response: ProductResponse) => response.result)
+    return this.http.get<ProdottoRisposta>(this.apiUrl).pipe(
+      map((response: ProdottoRisposta) => response.result)
   )}
 }
