@@ -1,5 +1,4 @@
 <div class="container-fluid mt-5">
-    <h2 class="mb-4 text-center carrello">Benvenuto nel tuo carrello</h2>
     <div class="row cart-item">
       <div class="col-md-2">
         <img src="https://via.placeholder.com/100" class="img-fluid" alt="Prodotto">
@@ -22,10 +21,10 @@
     </div>
 
     <!-- Totale carrello -->
-    <div class="row mt-4">
-      <div class="col-md-6 offset-md-6 text-right">
+    <div class="row mt-4 text-right">
+      <div class="col-md-6 offset-md-9 text-right">
         <p class="cart-total">Totale: Prezzo</p>
-        <button class="btn btn-secondary">Home</button>
+        <button class="btn btn-secondary me-1">Home</button>
         <a class="btn btn-primary" [routerLink]="'/checkout'">Checkout</a>
         <!-- <button class="btn btn-primary">Checkout</button> -->
       </div>
