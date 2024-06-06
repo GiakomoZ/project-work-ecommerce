@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { CaroselloImmaginiComponent } from '../carosello-immagini/carosello-immagini.component';
 
 @Component({
 	selector: 'app-card-prodotto',
 	standalone: true,
-	imports: [CommonModule],
+	imports: [CommonModule, CaroselloImmaginiComponent],
 	templateUrl: './card-prodotto.component.html',
 	styleUrl: './card-prodotto.component.css',
 })
