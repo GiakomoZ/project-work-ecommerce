@@ -17,38 +17,8 @@ export class CategorieService {
 		.pipe(map((response: categoriaRisposta) => response.result));
 	}
 
-	//Categorie disponibili
-	/* {
-  "result": [
-    {
-      "id": 1,
-      "name": "Abbigliamento",
-      "image": "QkIa5tT.jpeg"
-    },
-    {
-      "id": 2,
-      "name": "Elettronica",
-      "image": "ZANVnHE.jpeg"
-    },
-    {
-      "id": 3,
-      "name": "Mobili",
-      "image": "Qphac99.jpeg"
-    },
-    {
-      "id": 4,
-      "name": "Scarpe",
-      "image": "qNOjJje.jpeg"
-    },
-    {
-      "id": 5,
-      "name": "Varie",
-      "image": "BG8J0Fj.jpg"
-    }
-  ],
-   */
-
 	getOne(id: number) {
 		return this.http.get<Categoria>(this.apiUrl + `/${id}`);
 	}
 }
+
