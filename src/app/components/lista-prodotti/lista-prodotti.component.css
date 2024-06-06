@@ -1,13 +1,14 @@
 .card {
-	width: 100%;
-	height: 100%;
-}
-
-.carousel-item img {
-	height: 400px;
-	object-fit: cover;
-}
-
-.card-body {
-	text-align: center;
-}
+	width: 100%; /* Larghezza fissa al 100% del contenitore padre */
+	height: 100%; /* Altezza fissa al 100% del contenitore padre */
+  }
+  
+  .carousel-item img {
+	height: 400px; /* Altezza fissa delle immagini all'interno del carousel */
+	object-fit: cover; /* Assicura che le immagini si adattino all'area disponibile */
+  }
+  
+  .card-body {
+	text-align: center; /* Allinea il testo al centro */
+  }
+  
