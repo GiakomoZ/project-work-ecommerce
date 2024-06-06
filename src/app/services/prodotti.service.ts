@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Prodotto } from '../models/prodotto';
-import { risposta } from '../models/rispostaApi';
 import { ProdottoRisposta } from '../models/ProdottoRisposta';
 import { map } from 'rxjs/operators';
 
