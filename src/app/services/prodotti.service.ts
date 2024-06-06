@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class ProdottiService {
 
-  private apiUrl = 'https://projectworkapi-z5nzzkwikq-oc.a.run.app/products?pagesize=9999'; // Sostituisci con l'URL reale della tua API
+  private apiUrl = 'https://projectworkapi-z5nzzkwikq-oc.a.run.app/products?pagesize=50'; // Sostituisci con l'URL reale della tua API
 
   constructor(private http: HttpClient) {}
 
