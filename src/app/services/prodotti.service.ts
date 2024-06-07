@@ -8,18 +8,18 @@ import { map } from 'rxjs/operators';
 })
 export class ProdottiService {
 	private apiUrl =
-    'https://projectworkapi-z5nzzkwikq-oc.a.run.app/products?pagesize=50';
+    'https://projectworkapi-z5nzzkwikq-oc.a.run.app/products';
   private pagesizeDefault = 10;
 
 	constructor(private http: HttpClient) {}
 
-	getProducts() {
+	getAll() {
 		return this.http
-			.get<ProdottoRisposta>(this.apiUrl)
+			.get<ProdottoRisposta>(this.apiUrl + '?pagesize=50')
 			.pipe(map((response: ProdottoRisposta) => response.result));
 	}
 
-	getPAginatedProducts(page: number) {
+	getPaginatedProducts(page: number) {
 		return this.http
 			.get<ProdottoRisposta>(
 				this.apiUrl + `?page=${page}&pagesize=${this.pagesizeDefault}`

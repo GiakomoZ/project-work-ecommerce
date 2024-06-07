@@ -17,7 +17,7 @@ export class ListaProdottiComponent implements OnInit{
 	constructor(private productService : ProdottiService) {}
 
 	ngOnInit(): void {
-		this.productService.getProducts().subscribe((data: Prodotto[]) => {
+		this.productService.getPaginatedProducts(1).subscribe((data: Prodotto[]) => {
 			this.prodotti = data;
 		});
 	}
