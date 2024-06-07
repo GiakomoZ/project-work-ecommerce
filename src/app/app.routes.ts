@@ -5,10 +5,12 @@ import { ListaProdottiComponent } from './components/lista-prodotti/lista-prodot
 import { CarrelloComponent } from './components/carrello/carrello.component';
 import { DatiPersonaliComponent } from './components/dati-personali/dati-personali.component';
 import { PagamentoComponent } from './components/pagamento/pagamento.component';
+import { InfoProdottoComponent } from './components/info-prodotto/info-prodotto.component';
 
 export const routes: Routes = [
     { path: "", component: HomepageComponent },
     { path: "shop", component: ListaProdottiComponent },
+    {path:"shop/:id", component: InfoProdottoComponent},
     { path: "carrello", component: CarrelloComponent },
     { path: "checkout", component: DatiPersonaliComponent },
     {path:"pagamento", component:PagamentoComponent},

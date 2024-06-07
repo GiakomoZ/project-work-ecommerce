@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CaroselloImmaginiComponent } from '../carosello-immagini/carosello-immagini.component';
 import { StelleRatingComponent } from '../stelle-rating/stelle-rating.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
 	selector: 'app-card-prodotto',
 	standalone: true,
-	imports: [CommonModule, CaroselloImmaginiComponent, StelleRatingComponent],
+	imports: [CommonModule, CaroselloImmaginiComponent, StelleRatingComponent, RouterModule],
 	templateUrl: './card-prodotto.component.html',
 	styleUrl: './card-prodotto.component.css',
 })
