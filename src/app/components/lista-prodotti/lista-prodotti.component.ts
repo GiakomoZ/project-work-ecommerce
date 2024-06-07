@@ -30,10 +30,7 @@ export class ListaProdottiComponent implements OnInit {
 			this.pages.push(i);
 		}
 	}
-	loadPage(page: number) {
-		this.loadProducts(page);
-	}
-
+	
 	ngOnInit(): void {
 		this.loadProducts(1);
 		this.productService.getProductsNumber().subscribe((data: number) => {
