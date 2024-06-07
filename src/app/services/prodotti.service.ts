@@ -4,16 +4,26 @@ import { ProdottoRisposta } from '../models/ProdottoRisposta';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class ProdottiService {
+	private apiUrl =
+    'https://projectworkapi-z5nzzkwikq-oc.a.run.app/products?pagesize=50';
+  private pagesizeDefault = 10;
 
-  private apiUrl = 'https://projectworkapi-z5nzzkwikq-oc.a.run.app/products?pagesize=50'; // Sostituisci con l'URL reale della tua API
+	constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {}
+	getProducts() {
+		return this.http
+			.get<ProdottoRisposta>(this.apiUrl)
+			.pipe(map((response: ProdottoRisposta) => response.result));
+	}
 
-  getProducts() {
-    return this.http.get<ProdottoRisposta>(this.apiUrl).pipe(
-      map((response: ProdottoRisposta) => response.result)
-  )}
+	getPAginatedProducts(page: number) {
+		return this.http
+			.get<ProdottoRisposta>(
+				this.apiUrl + `?page=${page}&pagesize=${this.pagesizeDefault}`
+			)
+			.pipe(map((response: ProdottoRisposta) => response.result));
+	}
 }
