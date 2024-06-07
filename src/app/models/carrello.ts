@@ -1,6 +1,8 @@
 export interface Carrello {
     nome: number;
     img: string;
-    quantità: number;
+    descrizione: string;
+    tipo:string;
     prezzo: number;
+    quantita: number;
 }
