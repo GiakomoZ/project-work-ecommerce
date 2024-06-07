@@ -11,16 +11,35 @@ import { CardProdottoComponent } from '../card-prodotto/card-prodotto.component'
 	templateUrl: './lista-prodotti.component.html',
 	styleUrl: './lista-prodotti.component.css',
 })
-export class ListaProdottiComponent implements OnInit{
+export class ListaProdottiComponent implements OnInit {
 	prodotti: Prodotto[] = [];
+	nProdotti: number = 0;
+	pages: number[] = [];
 
-	constructor(private productService : ProdottiService) {}
+	constructor(private productService: ProdottiService) { }
+	
+	loadProducts(page: number) {
+		this.productService
+			.getPaginatedProducts(page)
+			.subscribe((data: Prodotto[]) => {
+				this.prodotti = data;
+			});
+	}
+	loadPages() {
+		for(let i = 1; i <= Math.ceil(this.nProdotti / 10); i++) {
+			this.pages.push(i);
+		}
+	}
+	loadPage(page: number) {
+		this.loadProducts(page);
+	}
 
 	ngOnInit(): void {
-		this.productService.getPaginatedProducts(1).subscribe((data: Prodotto[]) => {
-			this.prodotti = data;
+		this.loadProducts(1);
+		this.productService.getProductsNumber().subscribe((data: number) => {
+			this.nProdotti = data;
 		});
+		this.loadPages();
 	}
-	
-	  
+
 }

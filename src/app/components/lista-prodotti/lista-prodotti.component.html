@@ -1,6 +1,5 @@
 <div class="container mt-4">
 	<div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2 justify-content-center">
-		<!-- Inizio del ciclo *ngFor per generare le card -->
 		<ng-container *ngFor="let product of prodotti">
 			<app-card-prodotto
 				[id]="product.id"
@@ -10,6 +9,10 @@
 				[rating]="product.stars"
 			></app-card-prodotto>
 		</ng-container>
-		<!-- Fine del ciclo *ngFor -->
+	</div>
+	<div class="mt-4 d-flex justify-content-center">
+		<ng-container *ngFor="let page of pages">
+			<button class="btn mr-2 btn-primary" (click)="loadPage(page)">{{ page }}</button>
+		</ng-container>
 	</div>
 </div>

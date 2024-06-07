@@ -10,7 +10,6 @@ import { Prodotto } from '../models/prodotto';
 export class ProdottiService {
 	private apiUrl =
     'https://projectworkapi-z5nzzkwikq-oc.a.run.app/products';
-  private pagesizeDefault = 10;
 
 	constructor(private http: HttpClient) {}
 
@@ -23,12 +22,18 @@ export class ProdottiService {
 	getPaginatedProducts(page: number) {
 		return this.http
 			.get<ProdottoRisposta>(
-				this.apiUrl + `?page=${page}&pagesize=${this.pagesizeDefault}`
+				this.apiUrl + `?page=${page}`
 			)
 			.pipe(map((response: ProdottoRisposta) => response.result));
   }
   
   getProduct(id: number) {
     return this.http.get<Prodotto>(this.apiUrl + `/${id}`);
+  }
+
+  getProductsNumber() {
+    return this.http.get<ProdottoRisposta>(this.apiUrl + '?pagesize=1').pipe(
+      map((response: ProdottoRisposta) => response.totalRecordsCount)
+    );
   }
 }
