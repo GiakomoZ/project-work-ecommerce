@@ -1,16 +1,14 @@
 <div class="container mt-4">
 	<div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2 justify-content-center">
-		<ng-container *ngFor="let categoria of categorie">
-			<div class="mb-4">
-				<app-card-categoria
-				[id]="categoria.id"
-				[nome]="categoria.name"
-				[image]="categoria.image"
-			></app-card-categoria>
-			</div>
-		</ng-container>
+	  <ng-container *ngFor="let categoria of categorie">
+		<div class="mb-4">
+		  <app-card-categoria
+			[id]="categoria.id"
+			[nome]="categoria.name"
+			[image]="categoria.image"
+		  ></app-card-categoria>
+		</div>
+	  </ng-container>
 	</div>
-</div>
-
-
-
+  </div>
+  
