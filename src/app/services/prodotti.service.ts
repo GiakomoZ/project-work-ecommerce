@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProdottoRisposta } from '../models/ProdottoRisposta';
 import { map } from 'rxjs/operators';
+import { Prodotto } from '../models/prodotto';
 
 @Injectable({
 	providedIn: 'root',
@@ -25,5 +26,9 @@ export class ProdottiService {
 				this.apiUrl + `?page=${page}&pagesize=${this.pagesizeDefault}`
 			)
 			.pipe(map((response: ProdottoRisposta) => response.result));
-	}
+  }
+  
+  getProduct(id: number) {
+    return this.http.get<Prodotto>(this.apiUrl + `/${id}`);
+  }
 }
