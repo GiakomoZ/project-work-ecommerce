@@ -27,9 +27,9 @@ export class ListaProdottiComponent implements OnInit {
 					this.prodotti = data;
 					this.paginaCorrente = page;
 
-			window.scrollTo(0, 0);
+					window.scrollTo(0, 0);
 				});
-		}
+		} else window.scrollTo(0, 0);
 	}
 
 	loadPages() {
