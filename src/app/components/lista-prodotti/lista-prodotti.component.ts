@@ -14,7 +14,7 @@ import { CardProdottoComponent } from '../card-prodotto/card-prodotto.component'
 export class ListaProdottiComponent implements OnInit {
 	prodotti: Prodotto[] = [];
 	nProdotti: number = 0;
-	paginaCorrente: number = 0;
+	paginaCorrente: number = 1;
 	pages: number[] = [];
 
 	constructor(private productService: ProdottiService) {}
@@ -46,7 +46,7 @@ export class ListaProdottiComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.loadProducts(1);
+		this.loadProducts(this.paginaCorrente);
 		this.productService.getProductsNumber().subscribe((data: number) => {
 			this.nProdotti = data;
 			this.loadPages(); // Call loadPages after nProdotti is set
