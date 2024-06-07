@@ -32,6 +32,12 @@ export class ListaProdottiComponent implements OnInit {
 		} else window.scrollTo(0, 0);
 	}
 
+	// Load categorie
+	loadCategorie(id: number) {}
+	// Load Reasearch
+	// Per laa ricerca bisogna cercare per titolo e per categoria quindi fare una request per tutti i prodotti e filtrare
+	// per titolo e categoria
+
 	loadPages() {
 		this.pages = []; // Clear the array first
 		for (let i = 1; i <= Math.ceil(this.nProdotti / 10); i++) {
