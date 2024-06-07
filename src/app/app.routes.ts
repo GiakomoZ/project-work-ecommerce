@@ -10,7 +10,7 @@ import { InfoProdottoComponent } from './components/info-prodotto/info-prodotto.
 export const routes: Routes = [
     { path: "", component: HomepageComponent },
     { path: "shop", component: ListaProdottiComponent },
-    {path:"shop/prova", component: InfoProdottoComponent},
+    {path:"shop/:id", component: InfoProdottoComponent},
     { path: "carrello", component: CarrelloComponent },
     { path: "checkout", component: DatiPersonaliComponent },
     {path:"pagamento", component:PagamentoComponent},
