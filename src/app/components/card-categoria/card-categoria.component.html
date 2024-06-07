@@ -1,10 +1,14 @@
-<div class="card h-100 user-select-none" [routerLink]="'/shop'">
-	<img
-		class="d-block w-100"
+<div class="card h-100 user-select-none" >
+	<div class="card-image-container">
+	  <img
+		class="d-block w-100 card-image"
 		[src]="'https://storage.googleapis.com/projectworkpascal/' + image"
 		alt="{{ nome }}"
-	/>
-	<div class="card-body">
-		<h5 class="card-title">{{ nome }}</h5>
+	  />
+	  <button class="discover-btn">Scopri!</button>
 	</div>
-</div>
+	<div class="card-body">
+	  <h5 class="card-title">{{ nome }}</h5>
+	</div>
+  </div>
+  
