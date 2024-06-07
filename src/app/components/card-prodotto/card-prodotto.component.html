@@ -1,0 +1,18 @@
+<div class="mb-4">
+	<div class="card w-100 h-100">
+		<app-carosello-immagini
+			[id]="id"
+			[immagini]="immagini"
+			[titolo]="titolo"
+		></app-carosello-immagini>
+		<div class="card-body">
+			<h5 class="card-title">{{ titolo }}</h5>
+			<p class="card-text"><strong>Prezzo:</strong> {{ prezzo|currency:"EUR" }}</p>
+			<app-stelle-rating [rating]="rating"></app-stelle-rating>
+		</div>
+		<div class="text-center justify-content-around">
+			<button class="btn">Maggiori Informazioni</button>
+			<button class="btn">+</button>
+		</div>
+	</div>
+</div>
