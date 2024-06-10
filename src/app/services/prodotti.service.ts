@@ -8,8 +8,7 @@ import { Prodotto } from '../models/prodotto';
 	providedIn: 'root',
 })
 export class ProdottiService {
-	private apiUrl =
-    'https://projectworkapi-z5nzzkwikq-oc.a.run.app/products';
+	private apiUrl ='https://projectworkapi-z5nzzkwikq-oc.a.run.app/products';
 
 	constructor(private http: HttpClient) {}
 
@@ -34,5 +33,13 @@ export class ProdottiService {
     return this.http.get<ProdottoRisposta>(this.apiUrl + '?pagesize=1').pipe(
       map((response: ProdottoRisposta) => response.totalRecordsCount)
     );
+  }
+
+  searchProducts(query: string) {
+
+	console.log(`${this.apiUrl}?seach=${query}&pagesize=10`);
+    return this.http
+	.get<ProdottoRisposta>(`${this.apiUrl}?search=${query}&pagesize=10`)
+	.pipe(map((response: ProdottoRisposta) => response));
   }
 }

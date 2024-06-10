@@ -26,3 +26,19 @@
       box-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
   }
+
+  .bottoneSearch{
+    background-color: black !important;
+    color: white !important;
+  }
+
+  .CasellaRicerca{
+    float: left;
+    background-color: black !important;
+    color: white !important;
+    color: white !important;
+    &::placeholder {
+      color: white !important;
+    }
+  }
+

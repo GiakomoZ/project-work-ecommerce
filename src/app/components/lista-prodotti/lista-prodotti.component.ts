@@ -4,6 +4,7 @@ import { Prodotto } from '../../models/prodotto';
 import { CommonModule } from '@angular/common';
 import { CardProdottoComponent } from '../card-prodotto/card-prodotto.component';
 import { ToastrService } from 'ngx-toastr';
+import { ProdottoRisposta } from '../../models/ProdottoRisposta';
 
 @Component({
 	selector: 'app-lista-prodotti',
@@ -81,7 +82,16 @@ export class ListaProdottiComponent implements OnInit {
 	}
 
 
-	search(){
-		
+	search(nome: string): void {
+		this.productService.searchProducts(nome).subscribe({
+			next: (data: ProdottoRisposta) => {
+				this.prodotti = data.result;
+				this.nProdotti = data.totalRecordsCount;
+				this.nPagine = Math.ceil(this.nProdotti / this.nProdPerPagina);
+				this.loadPages();
+			},
+			error: (e) => this.notify.error('Errore nel caricamento dei prodotti'),
+		});
+		console.log(this.prodotti);
 	}
 }
