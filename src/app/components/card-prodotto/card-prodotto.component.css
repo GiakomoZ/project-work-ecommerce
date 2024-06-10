@@ -1,10 +1,16 @@
-.card {
-	width: 100%; /* Larghezza fissa al 100% del contenitore padre */
-	height: 100%; /* Altezza fissa al 100% del contenitore padre */
-}
+
 
 .card-body {
 	text-align: center; /* Allinea il testo al centro */
+	
+}
+
+
+.card-title {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 .btn {
@@ -21,3 +27,5 @@
 		box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 	}
 }
+
+

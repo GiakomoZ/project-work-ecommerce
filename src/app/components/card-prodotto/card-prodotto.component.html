@@ -6,13 +6,15 @@
 			[titolo]="product.title"
 		></app-carosello-immagini>
 		<div class="card-body">
-			<h5 class="card-title">{{ product.title }}</h5>
+
+			<h5 class="card-title">{{ product.title }}<br>     </h5>
 			<p class="card-text"><strong>Prezzo:</strong> {{ product.price|currency:"EUR" }}</p>
 			<app-stelle-rating [rating]="product.stars"></app-stelle-rating>
-		</div>
-		<div class="text-center justify-content-around">
-			<a class="btn" [routerLink]="[product.id]">Maggiori Informazioni</a>
-			<button class="btn"  (click)="addToCart()">+</button>
-		</div>
-	</div>
+			</div>
+			<div class="text-center justify-content-around">
+				<a class="btn" [routerLink]="[product.id]">Maggiori Informazioni</a>
+				<button class="btn"  (click)="addToCart()">+</button>
+				</div>
+				</div>
+			
 </div>
