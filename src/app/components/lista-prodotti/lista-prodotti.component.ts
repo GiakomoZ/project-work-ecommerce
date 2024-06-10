@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { CardProdottoComponent } from '../card-prodotto/card-prodotto.component';
 import { ToastrService } from 'ngx-toastr';
 import { ProdottoRisposta } from '../../models/ProdottoRisposta';
+import { Categoria } from '../../models/categoria';
+import { CategorieService } from '../../services/categorie.service';
 
 @Component({
 	selector: 'app-lista-prodotti',
@@ -14,17 +16,26 @@ import { ProdottoRisposta } from '../../models/ProdottoRisposta';
 	styleUrls: ['./lista-prodotti.component.css'],
 })
 export class ListaProdottiComponent implements OnInit {
+
 	prodotti: Prodotto[] = [];
 	nProdotti: number = 0;
 	nProdPerPagina: number = 10;
 	nPagine: number = 0;
 	paginaCorrente: number = 0;
 	pages: number[] = [];
+	categorie: Categoria[] | undefined;
 
 	constructor(
 		private productService: ProdottiService,
-		private notify: ToastrService
-	) { }
+		private notify: ToastrService,
+		private categorieService: CategorieService
+	) {
+		this.categorieService.getAll().subscribe({
+			next: (data: Categoria[]) => (this.categorie = data),
+			error: (e) =>
+			this.notify.error('Errore nel caricamento delle categorie'),
+		});
+	 }
 
 	ngOnInit(): void {
 		this.loadProducts(1);
@@ -82,8 +93,8 @@ export class ListaProdottiComponent implements OnInit {
 	}
 
 
-	search(nome: string): void {
-		this.productService.searchProducts(nome).subscribe({
+	search(nome: string,categoria:string): void {
+		this.productService.searchProducts(nome,categoria).subscribe({
 			next: (data: ProdottoRisposta) => {
 				this.prodotti = data.result;
 				this.nProdotti = data.totalRecordsCount;
@@ -94,4 +105,7 @@ export class ListaProdottiComponent implements OnInit {
 		});
 		console.log(this.prodotti);
 	}
+
+	
+	
 }
