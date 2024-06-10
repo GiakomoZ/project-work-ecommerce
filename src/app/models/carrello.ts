@@ -1,8 +1,6 @@
+import { Prodotto } from "./prodotto";
+
 export interface Carrello {
-    nome: number;
-    img: string;
-    descrizione: string;
-    tipo:string;
-    prezzo: number;
+    prodotto: Prodotto;
     quantita: number;
 }

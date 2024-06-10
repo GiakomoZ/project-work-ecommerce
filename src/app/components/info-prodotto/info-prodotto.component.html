@@ -1,22 +1,22 @@
-<div class="container bg-white p-3 rounded">
+<div class="container bg-white p-3 rounded" *ngIf="product">
     <div class="row">
         <div class="col-md-4 p-1">
             <div class="img-fluid p-1 rounded">
-                <app-carosello-immagini [id]="id" [immagini]="immagini" [titolo]="titolo"></app-carosello-immagini>
+                <app-carosello-immagini [id]="id" [immagini]="product.images" [titolo]="product.title"></app-carosello-immagini>
             </div>
         </div>
         <div class="col-md-8">
-            <div class="product-title rounded">{{ titolo }}</div>
-            <div class="price rounded">{{ prezzo | currency:"EUR" }}</div>
-            <div class="category rounded">{{categoria}}</div>
+            <div class="product-title rounded">{{ product.title }}</div>
+            <div class="price rounded">{{ product.price | currency:"EUR" }}</div>
+            <div class="category rounded">{{product.category.name}}</div>
             <div class="rating mb-3 rounded">
-                <app-stelle-rating [rating]="rating"></app-stelle-rating>
+                <app-stelle-rating [rating]="product.stars"></app-stelle-rating>
             </div>
             <div class="description rounded">
-                <p>{{descrizione}}</p>
+                <p>{{product.description}}</p>
             </div>
             <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-primary btn-lg mt-3 rounded">Aggiungi al carrello</button>
+                <button type="button" class="btn btn-primary btn-lg mt-3 rounded" (click)="addToCart()">Aggiungi al carrello</button>
             </div>
         </div>
     </div>

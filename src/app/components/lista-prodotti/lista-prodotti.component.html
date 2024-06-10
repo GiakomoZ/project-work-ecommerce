@@ -3,11 +3,8 @@
         <ng-container *ngFor="let product of prodotti">
             <div class="mb-4">
                 <app-card-prodotto
-                    [id]="product.id"
-                    [titolo]="product.title"
-                    [prezzo]="product.price"
-                    [immagini]="product.images"
-                    [rating]="product.stars"
+                    [product]="product"
+                   
                 ></app-card-prodotto>
             </div>
         </ng-container>

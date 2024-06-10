@@ -1,18 +1,18 @@
-<div class="mb-4">
+<div class="mb-4" *ngIf="product">
 	<div class="card w-100 h-100">
 		<app-carosello-immagini
-			[id]="id"
-			[immagini]="immagini"
-			[titolo]="titolo"
+			[id]="product.id"
+			[immagini]="product.images"
+			[titolo]="product.title"
 		></app-carosello-immagini>
 		<div class="card-body">
-			<h5 class="card-title">{{ titolo }}</h5>
-			<p class="card-text"><strong>Prezzo:</strong> {{ prezzo|currency:"EUR" }}</p>
-			<app-stelle-rating [rating]="rating"></app-stelle-rating>
+			<h5 class="card-title">{{ product.title }}</h5>
+			<p class="card-text"><strong>Prezzo:</strong> {{ product.price|currency:"EUR" }}</p>
+			<app-stelle-rating [rating]="product.stars"></app-stelle-rating>
 		</div>
 		<div class="text-center justify-content-around">
-			<a class="btn" [routerLink]="[id]">Maggiori Informazioni</a>
-			<button class="btn"  (click)="getId(id)">+</button>
+			<a class="btn" [routerLink]="[product.id]">Maggiori Informazioni</a>
+			<button class="btn"  (click)="addToCart()">+</button>
 		</div>
 	</div>
 </div>

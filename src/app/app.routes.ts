@@ -13,7 +13,7 @@ export const routes: Routes = [
 	{ path: 'shop', component: ListaProdottiComponent },
 	{ path: 'shop/:id', component: InfoProdottoComponent },
 	{ path: 'carrello', component: CarrelloComponent },
-	{ path: 'checkout', component: DatiPersonaliComponent },
+	{ path: 'carrello/checkout', component: DatiPersonaliComponent },
 	{ path: 'pagamento', component: PagamentoComponent },
 	{ path: 'about', component: AboutComponent },
 	{ path: '**', component: NotfoundComponent },
