@@ -32,7 +32,7 @@ export class CardProdottoComponent {
 
 	addToCart() {
 		if (this.product) {
-			this.carrelloService.addToCart(this.product);
+			this.carrelloService.addToCart(this.product.id);
 			console.log(this.product);
 			this.notify.success('Prodotto aggiunto al carrello');
 		}

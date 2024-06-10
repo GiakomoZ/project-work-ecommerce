@@ -36,7 +36,7 @@ export class InfoProdottoComponent {
 
 	addToCart() {
 		if (this.product) {
-			this.carrelloService.addToCart(this.product);
+			this.carrelloService.addToCart(this.product.id);
 			this.notify.success('Prodotto aggiunto al carrello');
 		}
 	}
