@@ -5,6 +5,7 @@ import { StelleRatingComponent } from '../stelle-rating/stelle-rating.component'
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Prodotto } from '../../models/prodotto';
 import { CarrelloService } from '../../services/carrello.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-card-prodotto',
@@ -23,9 +24,16 @@ export class CardProdottoComponent {
 
 	prodotto: Prodotto | undefined;
 
-	constructor(private carrelloService: CarrelloService) {}
+	constructor(
+		private carrelloService: CarrelloService,
+		private notify: ToastrService
+	) {}
 
 	addToCart() {
-		if (this.product) this.carrelloService.addToCart(this.product);
+		if (this.product) {
+			this.carrelloService.addToCart(this.product);
+			console.log(this.product);
+			this.notify.success('Prodotto aggiunto al carrello');
+		}
 	}
 }
