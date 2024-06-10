@@ -1,0 +1,66 @@
+<ng-container *ngIf="prodotto&&id">
+	<div class="row">
+		<div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+			<div
+				class="bg-image hover-overlay hover-zoom ripple rounded"
+				data-mdb-ripple-color="light"
+			>
+				<app-carosello-immagini
+					[immagini]="prodotto.images"
+				></app-carosello-immagini>
+			</div>
+		</div>
+
+		<div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+			<p>
+				<strong>{{ prodotto.title }}</strong>
+			</p>
+			<button
+				type="button"
+				data-mdb-button-init
+				data-mdb-ripple-init
+				class="btn bg-white btn-sm me-1 mb-2"
+				data-mdb-tooltip-inittitle="Remove item"
+			>
+				<img
+					src="https://static-00.iconduck.com/assets.00/trash-bin-icon-2048x2048-duca73jv.png"
+					alt="Remove item"
+					height="20"
+					width="20"
+					(click)="this.carrelloService.removeItem(id)"
+				/>
+			</button>
+		</div>
+
+		<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+			<div class="d-flex mb-4">
+				<button
+					data-mdb-button-init
+					data-mdb-ripple-init
+					class="btn bg-black px-3 me-2"
+					(click)="this.carrelloService.updateQuantity(id, -1)"
+				>
+					<span class="text-white">-</span>
+				</button>
+
+				<p type="number" class="form-control mx-2 text-center">
+					{{ quantita }}
+				</p>
+
+				<button
+					data-mdb-ripple-init
+					class="btn bg-black px-3 ms-2"
+					(click)="this.carrelloService.updateQuantity(id, 1)"
+				>
+					<span class="text-white">+</span>
+				</button>
+			</div>
+
+			<p class="text-start text-md-center">
+				<strong>{{
+					prodotto.price * quantita | currency : "EUR"
+				}}</strong>
+			</p>
+		</div>
+	</div>
+</ng-container>
