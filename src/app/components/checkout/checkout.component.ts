@@ -67,10 +67,10 @@ export class CheckoutComponent {
 			payment: carta,
 		};
 		this.checkoutService.inviaOrdine(dati).subscribe(
-			(response: any) => {
+			(response) => {
 				console.log('Risposta dal server:', response);
 			},
-			(error: any) => {
+			(error) => {
 				console.error('Errore:', error);
 			}
 		);

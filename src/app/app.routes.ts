@@ -3,8 +3,6 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ListaProdottiComponent } from './components/lista-prodotti/lista-prodotti.component';
 import { CarrelloComponent } from './components/carrello/carrello.component';
-import { DatiPersonaliComponent } from './components/dati-personali/dati-personali.component';
-import { PagamentoComponent } from './components/pagamento/pagamento.component';
 import { InfoProdottoComponent } from './components/info-prodotto/info-prodotto.component';
 import { AboutComponent } from './components/about/about.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
@@ -15,7 +13,6 @@ export const routes: Routes = [
 	{ path: 'shop/:id', component: InfoProdottoComponent },
 	{ path: 'carrello', component: CarrelloComponent },
 	{ path: 'carrello/checkout', component: CheckoutComponent },
-	{ path: 'pagamento', component: PagamentoComponent },
 	{ path: 'about', component: AboutComponent },
 	{ path: '**', component: NotfoundComponent },
 ];
