@@ -125,12 +125,20 @@
 
 						<!-- Price -->
 					</div>
-          <div class="card-footer py-3">
-            <div class="d-flex justify-content-between">
-            <h5 class="mb-0">Totale - {{this.carrelloService.getTotale()|currency:"EUR"}}</h5>
-            <a class="btn btn-primary" [routerLink]="'checkout'">Checkout</a>
-            </div>
-          </div>
+					<div class="card-footer py-3">
+						<div class="d-flex justify-content-between">
+							<h5 class="mb-0">
+								Totale -
+								{{
+									this.carrelloService.getTotale()
+										| currency : "EUR"
+								}}
+							</h5>
+							<a class="btn btn-primary" [routerLink]="'checkout'" *ngIf="this.carrelloService.getTotale() > 0"
+								>Checkout</a
+							>
+						</div>
+					</div>
 				</div>
 				<!-- Single item -->
 			</div>
