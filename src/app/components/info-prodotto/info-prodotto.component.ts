@@ -6,6 +6,7 @@ import { CaroselloImmaginiComponent } from '../carosello-immagini/carosello-imma
 import { StelleRatingComponent } from '../stelle-rating/stelle-rating.component';
 import { ActivatedRoute } from '@angular/router';
 import { CarrelloService } from '../../services/carrello.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-info-prodotto',
@@ -18,10 +19,13 @@ export class InfoProdottoComponent {
 	id: number = 1;
 	product: Prodotto | undefined = undefined;
 
-	constructor(private productService: ProdottiService, private route: ActivatedRoute, private carrelloService:CarrelloService) {
+	constructor(private productService: ProdottiService, private route: ActivatedRoute, private carrelloService:CarrelloService, private notify: ToastrService) {
 		this.id = this.route.snapshot.params["id"];
-		this.productService.getProduct(this.id).subscribe((data: Prodotto) => {
-			this.product = data;
+		this.productService.getProduct(this.id).subscribe({
+			next: (data: Prodotto) => {
+				this.product = data;
+			},
+			error: (e) => notify.error('Errore nel caricamento del prodotto'),
 		});
 	}
 

@@ -11,8 +11,22 @@
     </div>
 </div>
 
-<div class="d-flex justify-content-center mb-4">
-    <ng-container *ngFor="let page of pages">
-        <button class="btn ml-2 btn-primary text-black" (click)="loadProducts(page)">{{ page }}</button>
-    </ng-container>
-</div>
+<nav aria-label="Pagine prodotti" class="d-flex justify-content-center mb-4 user-select-none">
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="isFirstPage()">
+            <a class="page-link" (click)="switchPage(-1)" aria-label="Previous" [attr.aria-disabled]="isFirstPage()">
+                <span class="sr-only">Prev</span>
+            </a>
+        </li>
+        <ng-container *ngFor="let page of pages">
+            <li class="page-item" [class.active]="page === paginaCorrente">
+                <a class="page-link" (click)="loadProducts(page)">{{ page }}</a>
+            </li>
+        </ng-container>
+        <li class="page-item" [class.disabled]="isLastPage()">
+            <a class="page-link" (click)="switchPage(+1)" aria-label="Next" [attr.aria-disabled]="isLastPage()">
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>

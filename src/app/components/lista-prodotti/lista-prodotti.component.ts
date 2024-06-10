@@ -3,6 +3,7 @@ import { ProdottiService } from '../../services/prodotti.service';
 import { Prodotto } from '../../models/prodotto';
 import { CommonModule } from '@angular/common';
 import { CardProdottoComponent } from '../card-prodotto/card-prodotto.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-lista-prodotti',
@@ -14,42 +15,68 @@ import { CardProdottoComponent } from '../card-prodotto/card-prodotto.component'
 export class ListaProdottiComponent implements OnInit {
 	prodotti: Prodotto[] = [];
 	nProdotti: number = 0;
+	nProdPerPagina: number = 10;
+	nPagine: number = 0;
 	paginaCorrente: number = 0;
 	pages: number[] = [];
 
-	constructor(private productService: ProdottiService) {}
-
-	loadProducts(page: number) {
-		if (page != this.paginaCorrente) {
-			this.productService
-				.getPaginatedProducts(page)
-				.subscribe((data: Prodotto[]) => {
-					this.prodotti = data;
-					this.paginaCorrente = page;
-
-					window.scrollTo(0, 0);
-				});
-		} else window.scrollTo(0, 0);
-	}
-
-	// Load categorie
-	loadCategorie(id: number) {}
-	// Load Reasearch
-	// Per laa ricerca bisogna cercare per titolo e per categoria quindi fare una request per tutti i prodotti e filtrare
-	// per titolo e categoria
-
-	loadPages() {
-		this.pages = []; // Clear the array first
-		for (let i = 1; i <= Math.ceil(this.nProdotti / 10); i++) {
-			this.pages.push(i);
-		}
-	}
+	constructor(
+		private productService: ProdottiService,
+		private notify: ToastrService
+	) { }
 
 	ngOnInit(): void {
 		this.loadProducts(1);
-		this.productService.getProductsNumber().subscribe((data: number) => {
-			this.nProdotti = data;
-			this.loadPages(); // Call loadPages after nProdotti is set
+		this.fetchProductCount();
+	}
+
+	loadProducts(page: number): void {
+		if (page !== this.paginaCorrente) {
+			this.productService.getPaginatedProducts(page).subscribe({
+				next: (data: Prodotto[]) => {
+					this.prodotti = data;
+					this.paginaCorrente = page;
+					this.scrollToTop();
+				},
+				error: (e) => this.notify.error('Errore nel caricamento dei prodotti'),
+			});
+		} else {
+			this.scrollToTop();
+		}
+	}
+
+	fetchProductCount(): void {
+		this.productService.getProductsNumber().subscribe({
+			next: (data: number) => {
+				this.nProdotti = data;
+				this.nPagine = Math.ceil(this.nProdotti / this.nProdPerPagina);
+				this.loadPages();
+			},
+			error: (e) =>
+				this.notify.error("Errore nell'ottenimento del numero di pagine"),
 		});
+	}
+
+	loadPages(): void {
+		this.pages = Array.from({ length: this.nPagine }, (_, i) => i + 1);
+	}
+
+	switchPage(direction: number): void {
+		const newPage = this.paginaCorrente + direction;
+		if (newPage > 0 && newPage <= this.nPagine) {
+			this.loadProducts(newPage);
+		}
+	}
+
+	private scrollToTop(): void {
+		window.scrollTo(0, 0);
+	}
+
+	isFirstPage(): boolean {
+		return this.paginaCorrente === 1;
+	}
+
+	isLastPage(): boolean {
+		return this.paginaCorrente === this.nPagine;
 	}
 }
