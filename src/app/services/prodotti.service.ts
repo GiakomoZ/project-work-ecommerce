@@ -13,12 +13,7 @@ export class ProdottiService {
 
 	constructor(private http: HttpClient) {}
 
-	// Get di tutti i prodotti
-	getAll() {
-		return this.http
-			.get<ProdottoRisposta>(this.apiUrl + '?pagesize=50')
-			.pipe(map((response: ProdottoRisposta) => response.result));
-	}
+	
 
 	// Get dei prodotti paginati con pagesize 10 che cambia la pagina
 	getPaginatedProducts(page: number) {

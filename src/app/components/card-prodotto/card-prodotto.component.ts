@@ -7,6 +7,7 @@ import { Prodotto } from '../../models/prodotto';
 import { CarrelloService } from '../../services/carrello.service';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
 	selector: 'app-card-prodotto',
 	standalone: true,

@@ -12,8 +12,13 @@
 			<app-stelle-rating [rating]="product.stars"></app-stelle-rating>
 			</div>
 			<div class="text-center justify-content-around">
-				<a class="btn" [routerLink]="[product.id]">Maggiori Informazioni</a>
-				<button class="btn"  (click)="addToCart()">+</button>
+
+				<a class="btn Info" [routerLink]="[product.id]" title="Maggiori informazioni sul prodotto" aria-label="Maggiori informazioni sul prodotto" role="tooltip" data-bs-toggle="tooltip" data-bs-placement="top">
+					<i class="bi bi-info" ></i>
+				</a>
+				<button class="btn Cart"  (click)="addToCart()"  title="Maggiori informazioni sul prodotto" aria-label="Maggiori informazioni sul prodotto" role="tooltip" data-bs-toggle="tooltip" data-bs-placement="top">
+					<i class="bi bi-cart-fill"></i>
+				</button>
 				</div>
 				</div>
 			

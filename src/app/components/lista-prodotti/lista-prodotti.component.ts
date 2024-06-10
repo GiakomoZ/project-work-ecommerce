@@ -79,4 +79,9 @@ export class ListaProdottiComponent implements OnInit {
 	isLastPage(): boolean {
 		return this.paginaCorrente === this.nPagine;
 	}
+
+
+	search(){
+		
+	}
 }

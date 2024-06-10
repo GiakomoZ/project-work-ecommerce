@@ -32,4 +32,6 @@ export class DatiPersonaliComponent {
 			// Logica per l'invio del form
 		}
 	}
+
+	
 }
