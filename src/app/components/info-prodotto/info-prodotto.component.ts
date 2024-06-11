@@ -13,11 +13,11 @@ import { ToastrService } from 'ngx-toastr';
 	standalone: true,
 	imports: [CommonModule, CaroselloImmaginiComponent, StelleRatingComponent],
 	templateUrl: './info-prodotto.component.html',
-	styleUrl: './info-prodotto.component.css',
+	styleUrls: ['./info-prodotto.component.css'],
 })
 export class InfoProdottoComponent {
-	id: number = 1;
-	product: Prodotto | undefined = undefined;
+	id: number;
+	product: Prodotto | undefined;
 
 	constructor(
 		private productService: ProdottiService,
@@ -25,12 +25,14 @@ export class InfoProdottoComponent {
 		private carrelloService: CarrelloService,
 		private notify: ToastrService
 	) {
-		this.id = this.route.snapshot.params['id'];
+		this.id = Number(this.route.snapshot.params['id']);
+		this.fetchProduct();
+	}
+
+	private fetchProduct() {
 		this.productService.getProduct(this.id).subscribe({
-			next: (data: Prodotto) => {
-				this.product = data;
-			},
-			error: (e) => notify.error('Errore nel caricamento del prodotto'),
+			next: (data: Prodotto) => (this.product = data),
+			error: () => this.notify.error('Errore nel caricamento del prodotto'),
 		});
 	}
 
@@ -41,3 +43,4 @@ export class InfoProdottoComponent {
 		}
 	}
 }
+

@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import { CarrelloService } from '../../services/carrello.service';
-import { Prodotto } from '../../models/prodotto';
 import { CaroselloImmaginiComponent } from '../carosello-immagini/carosello-immagini.component';
 import { Carrello } from '../../models/carrello';
-
 @Component({
   selector: 'app-carrello',
   standalone: true,
@@ -16,19 +14,11 @@ import { Carrello } from '../../models/carrello';
 })
 export class CarrelloComponent {
   carrello: Carrello[] = [];
-
   getCarrello() {
   this.carrello = this.carrelloService.getItems();
 }
-
   constructor(public carrelloService: CarrelloService) 
   {
     this.getCarrello();
   }
-  
-  
-
-  
- 
-
 }
