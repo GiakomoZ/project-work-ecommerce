@@ -56,7 +56,7 @@
 	<ul class="pagination">
 		<li class="page-item" [class.disabled]="isFirstPage()">
 			<button
-				class="page-link"
+				class="page-link Footer"
 				(click)="switchPage(-1)"
 				aria-label="Previous"
 				[attr.aria-disabled]="isFirstPage()"
@@ -67,14 +67,14 @@
 		</li>
 		<ng-container *ngFor="let page of pages">
 			<li class="page-item" [class.active]="page === paginaCorrente">
-				<button class="page-link" (click)="loadProducts(page)">
+				<button class="page-link Footer" (click)="loadProducts(page)">
 					{{ page }}
 				</button>
 			</li>
 		</ng-container>
-		<li class="page-item" [class.disabled]="isLastPage()">
+		<li class="page-item " [class.disabled]="isLastPage()">
 			<button
-				class="page-link"
+				class="page-link Footer"
 				(click)="switchPage(+1)"
 				aria-label="Next"
 				[attr.aria-disabled]="isLastPage()"
