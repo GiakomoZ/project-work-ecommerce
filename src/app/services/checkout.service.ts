@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DatiCliente } from '../models/datiCliente';
+import { DatiCheckout } from '../models/datiCliente';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class CheckoutService {
+	constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  inviaOrdine(dati:DatiCliente) {
-    return this.http.post(
-		'https://webhook.site/64646bd5-70e2-4875-9f09-2a37351cbbc3',
-		dati
-	);
-  }
+	// webhook: https://webhook.site/64646bd5-70e2-4875-9f09-2a37351cbbc3
+	inviaOrdine(dati: DatiCheckout) {
+		return this.http.post(
+			'https://projectworkapi-z5nzzkwikq-oc.a.run.app/orders',
+			dati
+		);
+	}
 }

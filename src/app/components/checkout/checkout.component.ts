@@ -7,14 +7,17 @@ import {
 	Validators,
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { DatiCliente } from '../../models/datiCliente';
+import { DatiCheckout } from '../../models/datiCliente';
 import { metodoPagamento } from '../../models/metodoPagamento';
 import { CheckoutService } from '../../services/checkout.service';
+import { CarrelloService } from '../../services/carrello.service';
+import { OggettiComprati } from '../../models/oggettiComprati';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-checkout',
 	standalone: true,
-	imports: [ReactiveFormsModule, CommonModule, RouterModule,],
+	imports: [ReactiveFormsModule, CommonModule, RouterModule],
 	templateUrl: './checkout.component.html',
 	styleUrl: './checkout.component.css',
 })
@@ -51,27 +54,33 @@ export class CheckoutComponent {
 		if (this.datiPersonali.valid) {
 			this.switch = true;
 		}
-  }
-  constructor(private checkoutService: CheckoutService) {}
+	}
+	constructor(private checkoutService: CheckoutService, private carrelloService: CarrelloService, private notify:ToastrService) {}
 	onSubmit() {
 		let carta: metodoPagamento = {
 			number: this.datiPagamento.get('cardNumber')?.value,
 			ownerName: this.datiPagamento.get('cardHolder')?.value,
-			expire: this.datiPagamento.get('expirationDate')?.value,
-			cvv: this.datiPagamento.get('cvv')?.value,
+			expire: this.datiPagamento.get('expirationDate')?.value.replace(/\//g, ''),
+			cvv: parseInt(this.datiPagamento.get('cvv')?.value),
 		};
-		let dati: DatiCliente = {
-			clientName: this.datiPersonali.get('nome')?.value,
+		let oggettiComprati: OggettiComprati[] = this.carrelloService.getItemsCheckout();
+		let dati: DatiCheckout = {
+			clientName:
+				this.datiPersonali.get('nome')?.value +
+				' ' +
+				this.datiPersonali.get('cognome')?.value,
 			address: this.datiPersonali.get('indirizzo')?.value,
-			totalPrice: 0,
+			totalPrice: this.carrelloService.getTotale(),
 			payment: carta,
+			details: oggettiComprati,
 		};
 		this.checkoutService.inviaOrdine(dati).subscribe(
 			(response) => {
+				this.notify.success(`Ordine numero ${response} inviato con successo`);
 				console.log('Risposta dal server:', response);
 			},
 			(error) => {
-				console.error('Errore:', error);
+				this.notify.error("Errore nell'invio dell'ordine");
 			}
 		);
 		console.log(dati);

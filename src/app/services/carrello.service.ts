@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Prodotto } from '../models/prodotto';
 import { Carrello } from '../models/carrello';
+import { OggettiComprati } from '../models/oggettiComprati';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class CarrelloService {
  
   getItems() {
     return this.carrello;
+  }
+
+  getItemsCheckout(): OggettiComprati[]{
+    return this.carrello.map(e => ({idProduct: e.prodotto.id, quantity: e.quantita}));
   }
 
   updateQuantity(prodotto: Prodotto, change: number) {
