@@ -5,7 +5,10 @@
 				<button
 					class="btn btn-outline-secondary bottoneSearch"
 					type="button"
-					(click)="searchInput.value = ''; search(searchInput.value, categoria.value)"
+					(click)="
+						searchInput.value = '';
+						search(searchInput.value, categoria.value)
+					"
 				>
 					<i class="fas fa-times"></i>
 				</button>
@@ -15,7 +18,7 @@
 					#searchInput
 					class="form-control form-control-lg text-white CasellaRicerca"
 					placeholder="Cerca..."
-					(keyup.enter)="search(searchInput.value,categoria.value)"
+					(keyup.enter)="search(searchInput.value, categoria.value)"
 				/>
 				<button
 					class="btn btn-lg btn-outline-secondary bottoneSearch"
@@ -26,10 +29,19 @@
 				</button>
 
 				<div class="input-group">
-					
-					<select  class="form-select categorie" #categoria id="category" (change)="search(searchInput.value,categoria.value)">
+					<select
+						class="form-select categorie"
+						#categoria
+						id="category"
+						(change)="search(searchInput.value, categoria.value)"
+					>
 						<option value="">Tutte</option>
-						<option *ngFor="let category of categorie" [value]="category.id">{{category.name}}</option>
+						<option
+							*ngFor="let category of categorie"
+							[value]="category.id"
+						>
+							{{ category.name }}
+						</option>
 					</select>
 				</div>
 			</div>
