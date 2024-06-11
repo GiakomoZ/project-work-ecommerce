@@ -9,7 +9,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { DatiCheckout } from '../../models/datiCliente';
 import { metodoPagamento } from '../../models/metodoPagamento';
-import { CheckoutService } from '../../services/checkout.service';
+import { OrdersService } from '../../services/orders.service';
 import { CarrelloService } from '../../services/carrello.service';
 import { OggettiComprati } from '../../models/oggettiComprati';
 import { ToastrService } from 'ngx-toastr';
@@ -56,7 +56,12 @@ export class CheckoutComponent {
 			this.switch = !this.switch;
 		}
 	}
-	constructor(private checkoutService: CheckoutService, private carrelloService: CarrelloService, private notify: ToastrService, private router: Router) {
+	constructor(
+		private checkoutService: OrdersService,
+		private carrelloService: CarrelloService,
+		private notify: ToastrService,
+		private router: Router
+	) {
 		if (this.carrelloService.getItems().length <= 0) {
 			notify.error('Non ci sono prodotti nel carrello');
 			this.router.navigate(['/']);
@@ -66,10 +71,13 @@ export class CheckoutComponent {
 		let carta: metodoPagamento = {
 			number: this.datiPagamento.get('cardNumber')?.value,
 			ownerName: this.datiPagamento.get('cardHolder')?.value,
-			expire: this.datiPagamento.get('expirationDate')?.value.replace(/\//g, ''),
+			expire: this.datiPagamento
+				.get('expirationDate')
+				?.value.replace(/\//g, ''),
 			cvv: parseInt(this.datiPagamento.get('cvv')?.value),
 		};
-		let oggettiComprati: OggettiComprati[] = this.carrelloService.getItemsCheckout();
+		let oggettiComprati: OggettiComprati[] =
+			this.carrelloService.getItemsCheckout();
 		let dati: DatiCheckout = {
 			clientName:
 				this.datiPersonali.get('nome')?.value +
@@ -83,7 +91,10 @@ export class CheckoutComponent {
 		};
 		this.checkoutService.inviaOrdine(dati).subscribe(
 			(response) => {
-				this.notify.success(`Ordine numero ${response} inviato con successo`);
+				this.notify.success(
+					`Ordine numero ${response} inviato con successo`
+				);
+				this.checkoutService.salvaOrdine(Number(response));
 				this.carrelloService.svuota();
 				this.router.navigate(['/']);
 			},

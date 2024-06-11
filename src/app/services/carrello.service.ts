@@ -2,19 +2,16 @@ import { Injectable } from '@angular/core';
 import { Prodotto } from '../models/prodotto';
 import { Carrello } from '../models/carrello';
 import { OggettiComprati } from '../models/oggettiComprati';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class CarrelloService {
-	static addToCart(arg0: Prodotto) {
-		throw new Error('Method not implemented.');
-	}
-
 	private carrello: Carrello[] = [];
 
-	saveToLS() {
-		localStorage.setItem('carrello', JSON.stringify(this.carrello));
+  saveToLS() {
+    this.ls.save('carrello', JSON.stringify(this.carrello));
 	}
 
 	addToCart(prodotto: Prodotto) {
@@ -76,8 +73,8 @@ export class CarrelloService {
 		this.saveToLS();
 	}
 
-	constructor() {
-		if (localStorage.getItem('carrello') != null) {
+	constructor(private ls: LocalStorageService) {
+		if (ls.get('carrello') != null) {
 			this.carrello = JSON.parse(localStorage.getItem('carrello')!);
 		}
 	}
