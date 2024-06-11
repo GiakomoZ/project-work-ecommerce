@@ -35,6 +35,7 @@
 						id="category"
 						(change)="search(searchInput.value, categoria.value)"
 					>
+						<option value=""></option>
 						<option value="">Tutte</option>
 						<option
 							*ngFor="let category of categorie"
@@ -84,7 +85,7 @@
 				</button>
 			</li>
 		</ng-container>
-		<li class="page-item " [class.disabled]="isLastPage()">
+		<li class="page-item" [class.disabled]="isLastPage()">
 			<button
 				class="page-link Footer"
 				(click)="switchPage(+1)"
