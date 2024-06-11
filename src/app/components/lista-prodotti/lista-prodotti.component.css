@@ -28,17 +28,22 @@
   }
 
   .bottoneSearch{
-    background-color: black !important;
-    color: white !important;
+    background-color: black ;
+    color: white ;
+  }
+
+  .container{
+    margin-bottom:0px;
   }
 
   .CasellaRicerca{
     float: left;
-    background-color: black !important;
-    color: white !important;
-    color: white !important;
+   
+    background-color: black ;
+    color: white ;
+    color: white ;
     &::placeholder {
-      color: white !important;
+      color: white ;
     }
   }
   .categorie{

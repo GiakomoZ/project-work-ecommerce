@@ -1,32 +1,44 @@
 <div class="container mt-5">
 	<div class="row justify-content-center">
 		<div class="col-md-5">
-			<div class="input-group mb-4">
-				<button
-					class="btn btn-outline-secondary bottoneSearch"
-					type="button"
-					(click)="
-						searchInput.value = '';
-						search(searchInput.value, categoria.value)
-					"
-				>
-					<i class="fas fa-times"></i>
-				</button>
+			<div class="container">
+				<div class="input-group mb-4">
 
-				<input
-					type="text"
-					#searchInput
-					class="form-control form-control-lg text-white CasellaRicerca"
-					placeholder="Cerca..."
-					(keyup.enter)="search(searchInput.value, categoria.value)"
-				/>
-				<button
-					class="btn btn-lg btn-outline-secondary bottoneSearch"
-					type="button"
-					(click)="search(searchInput.value, categoria.value)"
-				>
-					<i class="fas fa-search"></i>
-				</button>
+
+					<div class="input-group-prepend bottoneSearch">
+						<button
+							class="btn btn-outline-secondary bottoneSearch"
+							type="button"
+							(click)="
+								searchInput.value = '';
+								search(searchInput.value, categoria.value)
+							"
+						>
+							<i class="fas fa-times"></i>
+						</button>
+					</div>
+
+					<input
+						type="text"
+						#searchInput
+						class="form-control  CasellaRicerca"
+						placeholder="Cerca..."
+						(keyup.enter)="search(searchInput.value, categoria.value)"
+					/>
+
+
+					<div class=" bottoneSearch">
+						<button
+							class="btn btn-outline-secondary bottoneSearch"
+							type="button"
+							(click)="search(searchInput.value, categoria.value)"
+						>
+							<i class="fas fa-search"></i>
+						</button>
+					</div>
+				
+				</div>
+			</div>
 
 				<div class="input-group">
 					<select
@@ -48,7 +60,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+
 
 <div class="container mt-4">
 	<div
