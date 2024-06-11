@@ -94,6 +94,10 @@ export class ListaProdottiComponent implements OnInit {
 
 
 	search(nome: string,categoria:string): void {
+
+		
+		
+
 		this.productService.searchProducts(nome,categoria).subscribe({
 			next: (data: ProdottoRisposta) => {
 				this.prodotti = data.result;
