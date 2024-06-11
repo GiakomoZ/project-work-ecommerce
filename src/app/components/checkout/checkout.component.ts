@@ -76,6 +76,7 @@ export class CheckoutComponent {
 				' ' +
 				this.datiPersonali.get('cognome')?.value,
 			address: this.datiPersonali.get('indirizzo')?.value,
+			email: this.datiPersonali.get('email')?.value,
 			totalPrice: this.carrelloService.getTotale(),
 			payment: carta,
 			details: oggettiComprati,
@@ -83,7 +84,8 @@ export class CheckoutComponent {
 		this.checkoutService.inviaOrdine(dati).subscribe(
 			(response) => {
 				this.notify.success(`Ordine numero ${response} inviato con successo`);
-				console.log('Risposta dal server:', response);
+				this.carrelloService.svuota();
+				this.router.navigate(['/']);
 			},
 			(error) => {
 				this.notify.error("Errore nell'invio dell'ordine");
