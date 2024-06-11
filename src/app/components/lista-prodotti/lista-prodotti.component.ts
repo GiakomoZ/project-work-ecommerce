@@ -17,14 +17,21 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 	styleUrls: ['./lista-prodotti.component.css'],
 })
 export class ListaProdottiComponent implements OnInit {
-	prodotti: Prodotto[] = [];
-	nProdotti: number = 0;
-	nProdPerPagina: number = 10;
-	nPagine: number = 0;
-	paginaCorrente: number = 0;
+	nProdPerPagina = 10;
+	nProdotti = 0;
+	nPagine = 0;
+	paginaCorrente = 0;
 	pages: number[] = [];
-	choosenCat: number = 0;
-	categorie: Categoria[] | undefined;
+	choosenCat = 0;
+	searchQuery = '';
+
+	prodotti: Prodotto[] = [];
+
+	categorie: Categoria[] = [];
+
+	isSearch() {
+		return this.searchQuery != '' || this.choosenCat != 0;
+	}
 
 	constructor(
 		private productService: ProdottiService,
@@ -39,37 +46,20 @@ export class ListaProdottiComponent implements OnInit {
 		});
 	}
 
-	ngOnInit(): void {
-		console.log(this.route.snapshot.queryParamMap.get('cat'));
+	ngOnInit() {
 		if (this.route.snapshot.queryParamMap.get('cat')) {
 			this.choosenCat = Number(
 				this.route.snapshot.queryParamMap.get('cat')
 			);
-			
-			this.search('', this.choosenCat.toString());
+			this.fetchProductCountSearch(this.searchQuery, this.choosenCat);
+			this.loadProductsSearch(this.searchQuery, this.choosenCat, 1);
 		} else {
 			this.fetchProductCount();
 			this.loadProducts(1);
 		}
 	}
 
-	loadProducts(page: number): void {
-		if (page !== this.paginaCorrente) {
-			this.productService.getPaginatedProducts(page).subscribe({
-				next: (data: Prodotto[]) => {
-					this.prodotti = data;
-					this.paginaCorrente = page;
-					this.scrollToTop();
-				},
-				error: (e) =>
-					this.notify.error('Errore nel caricamento dei prodotti'),
-			});
-		} else {
-			this.scrollToTop();
-		}
-	}
-
-	fetchProductCount(): void {
+	fetchProductCount() {
 		this.productService.getProductsNumber().subscribe({
 			next: (data: number) => {
 				this.nProdotti = data;
@@ -77,23 +67,76 @@ export class ListaProdottiComponent implements OnInit {
 				this.loadPages();
 			},
 			error: (e) =>
-				this.notify.error(
-					"Errore nell'ottenimento del numero di pagine"
-				),
+				this.notify.error('Errore nel caricamento dei prodotti'),
 		});
 	}
-
-	loadPages(): void {
-		this.pages = Array.from({ length: this.nPagine }, (_, i) => i + 1);
+	fetchProductCountSearch(query: string, cat: number) {
+		this.productService.getProductsNumberSearch(query, cat).subscribe({
+			next: (data: number) => {
+				this.nProdotti = data;
+				this.nPagine = Math.ceil(this.nProdotti / this.nProdPerPagina);
+				this.loadPages();
+			},
+			error: (e) =>
+				this.notify.error('Errore nel caricamento dei prodotti'),
+		});
+	}
+	search(query: string, cat: string) {
+		this.loadProductsSearch(query, Number(cat), 1);
+	}
+	loadProducts(page: number) {
+		this.productService
+			.getPaginatedProducts(page)
+			.subscribe((data: Prodotto[]) => {
+				this.prodotti = data;
+				this.paginaCorrente = page;
+				this.scrollToTop();
+			});
+	}
+	loadProductsSearch(query: string, cat: number, page: number) {
+		this.searchQuery = query;
+		this.choosenCat = cat;
+		this.fetchProductCountSearch(query, cat);
+		this.productService
+			.searchProducts(query, cat, page)
+			.subscribe((data: Prodotto[]) => {
+				this.prodotti = data;
+				this.paginaCorrente = page;
+				this.scrollToTop();
+			});
 	}
 
+	//#region Paginazione
+	goTo(page: number) {
+		if (page > 0 && page <= this.nPagine) {
+			if (this.isSearch()) {
+				this.loadProductsSearch(
+					this.searchQuery,
+					this.choosenCat,
+					page
+				);
+			} else {
+				this.loadProducts(page);
+			}
+		}
+	}
 	switchPage(direction: number): void {
 		const newPage = this.paginaCorrente + direction;
 		if (newPage > 0 && newPage <= this.nPagine) {
-			this.loadProducts(newPage);
+			if (this.isSearch()) {
+				this.loadProductsSearch(
+					this.searchQuery,
+					this.choosenCat,
+					newPage
+				);
+			} else {
+				this.loadProducts(newPage);
+			}
 		}
 	}
-
+	loadPages(): void {
+		this.pages = Array.from({ length: this.nPagine }, (_, i) => i + 1);
+	}
 	private scrollToTop(): void {
 		window.scrollTo(0, 0);
 	}
@@ -105,18 +148,5 @@ export class ListaProdottiComponent implements OnInit {
 	isLastPage(): boolean {
 		return this.paginaCorrente === this.nPagine;
 	}
-
-	search(nome: string, categoria: string): void {
-		this.productService.searchProducts(nome, categoria).subscribe({
-			next: (data: ProdottoRisposta) => {
-				this.prodotti = data.result;
-				this.nProdotti = data.totalRecordsCount;
-				this.nPagine = Math.ceil(this.nProdotti / this.nProdPerPagina);
-				this.loadPages();
-			},
-			error: (e) =>
-				this.notify.error('Errore nel caricamento dei prodotti'),
-		});
-		console.log(this.prodotti);
-	}
+	//#endregion
 }
