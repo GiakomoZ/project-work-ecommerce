@@ -6,13 +6,14 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { DatiCheckout } from '../../models/datiCliente';
 import { metodoPagamento } from '../../models/metodoPagamento';
 import { CheckoutService } from '../../services/checkout.service';
 import { CarrelloService } from '../../services/carrello.service';
 import { OggettiComprati } from '../../models/oggettiComprati';
 import { ToastrService } from 'ngx-toastr';
+import { not } from 'rxjs/internal/util/not';
 
 @Component({
 	selector: 'app-checkout',
@@ -52,10 +53,15 @@ export class CheckoutComponent {
 
 	switchForm(): void {
 		if (this.datiPersonali.valid) {
-			this.switch = true;
+			this.switch = !this.switch;
 		}
 	}
-	constructor(private checkoutService: CheckoutService, private carrelloService: CarrelloService, private notify:ToastrService) {}
+	constructor(private checkoutService: CheckoutService, private carrelloService: CarrelloService, private notify: ToastrService, private router: Router) {
+		if (this.carrelloService.getItems().length <= 0) {
+			notify.error('Non ci sono prodotti nel carrello');
+			this.router.navigate(['/']);
+		}
+	}
 	onSubmit() {
 		let carta: metodoPagamento = {
 			number: this.datiPagamento.get('cardNumber')?.value,
