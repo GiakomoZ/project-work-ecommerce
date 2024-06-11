@@ -5,17 +5,28 @@
     font-family: 'Cabin', sans-serif;
 }
 .price {
-    color: #B12704;
+    color: #ffd500;
     font-size: 22px;
     margin: 10px 0;
 }
 .category {
     font-size: 16px;
-    color: #555;
+    color: white;
     margin: 10px 0;
 }
 
 
-/* .img{
-    height: 100px;
-} */
+.Bottone{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+
+.CardProdotto
+{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}

@@ -8,8 +8,7 @@ import { Prodotto } from '../models/prodotto';
 	providedIn: 'root',
 })
 export class ProdottiService {
-	private apiUrl =
-    'https://projectworkapi-z5nzzkwikq-oc.a.run.app/products';
+	private apiUrl ='https://projectworkapi-z5nzzkwikq-oc.a.run.app';
 
 	constructor(private http: HttpClient) {}
 
@@ -19,20 +18,35 @@ export class ProdottiService {
 	getPaginatedProducts(page: number) {
 		return this.http
 			.get<ProdottoRisposta>(
-				this.apiUrl + `?page=${page}`
+				this.apiUrl + `/products?page=${page}`
 			)
 			.pipe(map((response: ProdottoRisposta) => response.result));
   }
   
   // Get di un singolo prodotto
   getProduct(id: number) {
-    return this.http.get<Prodotto>(`${this.apiUrl}/${id}`);
+    return this.http.get<Prodotto>(`${this.apiUrl}/products/${id}`);
   }
 
   //funzione per capire quanti prodotti ci sono in totale
   getProductsNumber() {
-    return this.http.get<ProdottoRisposta>(this.apiUrl + '?pagesize=1').pipe(
+    return this.http.get<ProdottoRisposta>(this.apiUrl + '/products?pagesize=1').pipe(
       map((response: ProdottoRisposta) => response.totalRecordsCount)
     );
   }
+
+  searchProducts(query: string,categoria: string) {
+	
+	if(categoria!="") {
+    return this.http
+	.get<ProdottoRisposta>(`${this.apiUrl}/categories/${categoria}/products?search=${query}&&pagesize=10`)
+	.pipe(map((response: ProdottoRisposta) => response));
+	}else{
+	return this.http
+	.get<ProdottoRisposta>(`${this.apiUrl}/products?search=${query}&&pagesize=10`)
+	.pipe(map((response: ProdottoRisposta) => response));
+	}
+  }
+
+  
 }

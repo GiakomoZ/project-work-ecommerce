@@ -1,49 +1,87 @@
+<div class="container mt-5">
+	<div class="row justify-content-center">
+		<div class="col-md-5">
+			<div class="input-group mb-4">
+				<button
+					class="btn btn-outline-secondary bottoneSearch"
+					type="button"
+					(click)="searchInput.value = ''; search(searchInput.value, categoria.value)"
+				>
+					<i class="fas fa-times"></i>
+				</button>
 
+				<input
+					type="text"
+					#searchInput
+					class="form-control form-control-lg text-white CasellaRicerca"
+					placeholder="Cerca..."
+					(keyup.enter)="search(searchInput.value,categoria.value)"
+				/>
+				<button
+					class="btn btn-lg btn-outline-secondary bottoneSearch"
+					type="button"
+					(click)="search(searchInput.value, categoria.value)"
+				>
+					<i class="fas fa-search"></i>
+				</button>
 
-
-<div class="row justify-content-center mb-3">
-    <div class="col-md-8">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Cerca un prodotto" >
-            <div class="input-group-append">
-                <button class="btn outline-secondary" type="button" >
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+				<div class="input-group">
+					
+					<select  class="form-select categorie" #categoria id="category" (change)="search(searchInput.value,categoria.value)">
+						<option value="">Tutte</option>
+						<option *ngFor="let category of categorie" [value]="category.id">{{category.name}}</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
 
 <div class="container mt-4">
-    <div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2 justify-content-center">
-        <ng-container *ngFor="let product of prodotti">
-            <div class="mb-4">
-                <app-card-prodotto
-                    [product]="product"
-                   
-                ></app-card-prodotto>
-            </div>
-        </ng-container>
-    </div>
+	<div
+		class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2 justify-content-center"
+	>
+		<ng-container *ngFor="let product of prodotti">
+			<div class="mb-4">
+				<app-card-prodotto [product]="product"></app-card-prodotto>
+			</div>
+		</ng-container>
+	</div>
 </div>
 
-<nav aria-label="Pagine prodotti" class="d-flex justify-content-center mb-4 user-select-none">
-    <ul class="pagination">
-        <li class="page-item" [class.disabled]="isFirstPage()">
-            <a class="page-link" (click)="switchPage(-1)" aria-label="Previous" [attr.aria-disabled]="isFirstPage()">
-                <span class="sr-only">Prev</span>
-            </a>
-        </li>
-        <ng-container *ngFor="let page of pages">
-            <li class="page-item" [class.active]="page === paginaCorrente">
-                <a class="page-link" (click)="loadProducts(page)">{{ page }}</a>
-            </li>
-        </ng-container>
-        <li class="page-item" [class.disabled]="isLastPage()">
-            <a class="page-link" (click)="switchPage(+1)" aria-label="Next" [attr.aria-disabled]="isLastPage()">
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>
+<nav
+	aria-label="Pagine prodotti"
+	class="d-flex justify-content-center mb-4 user-select-none"
+>
+	<ul class="pagination">
+		<li class="page-item" [class.disabled]="isFirstPage()">
+			<button
+				class="page-link"
+				(click)="switchPage(-1)"
+				aria-label="Previous"
+				[attr.aria-disabled]="isFirstPage()"
+			>
+				<span aria-hidden="true">&laquo;</span>
+				<span class="sr-only">Prev</span>
+			</button>
+		</li>
+		<ng-container *ngFor="let page of pages">
+			<li class="page-item" [class.active]="page === paginaCorrente">
+				<button class="page-link" (click)="loadProducts(page)">
+					{{ page }}
+				</button>
+			</li>
+		</ng-container>
+		<li class="page-item" [class.disabled]="isLastPage()">
+			<button
+				class="page-link"
+				(click)="switchPage(+1)"
+				aria-label="Next"
+				[attr.aria-disabled]="isLastPage()"
+			>
+				<span aria-hidden="true">&raquo;</span>
+				<span class="sr-only">Next</span>
+			</button>
+		</li>
+	</ul>
 </nav>
