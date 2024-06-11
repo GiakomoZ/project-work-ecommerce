@@ -25,7 +25,7 @@ export class ProdottiService {
   
   // Get di un singolo prodotto
   getProduct(id: number) {
-    return this.http.get<Prodotto>(`${this.apiUrl}/${id}`);
+    return this.http.get<Prodotto>(`${this.apiUrl}/products/${id}`);
   }
 
   //funzione per capire quanti prodotti ci sono in totale
