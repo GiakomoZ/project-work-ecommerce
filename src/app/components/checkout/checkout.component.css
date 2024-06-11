@@ -5,3 +5,15 @@
 	border: 1px solid #ddd;
 	border-radius: 10px;
 }
+
+
+.containerCheck{
+	background-color: black;
+	color:white
+}
+
+.Prosegui{
+	background-color: black;
+	color:yellow;
+	border: 2px solid yellow;
+}

@@ -1,7 +1,7 @@
-<div>
-	<div id="datiPersonali" *ngIf="!switch">
-		<div class="container mt-5">
-			<div class="form-container bg-white p-4 shadow rounded">
+<div >
+	<div class="containerCheck"  id="datiPersonali" *ngIf="!switch">
+		<div class="container mt-5 ">
+			<div class="form-container   p-4 shadow rounded">
 				<h2 class="mb-4 text-center">Inserisci i tuoi dati</h2>
 				<form [formGroup]="datiPersonali" (ngSubmit)="switchForm()">
 					<div class="form-group mb-3">
@@ -108,7 +108,7 @@
 						>
 						<button
 							type="submit"
-							class="btn btn-primary"
+							class="btn  Prosegui"
 							[disabled]="!datiPersonali.valid"
 						>
 							Prosegui
@@ -118,9 +118,12 @@
 			</div>
 		</div>
 	</div>
-	<div id="datiPagamento" *ngIf="switch">
+
+
+
+	<div class="containerCheck" id="datiPagamento" *ngIf="switch">
 		<div class="container mt-5">
-			<div class="form-container bg-white p-4 shadow rounded">
+			<div class="form-container  p-4 shadow rounded">
 				<h2 class="mb-4 text-center">Aggiungi carta di credito</h2>
 				<form [formGroup]="datiPagamento" (ngSubmit)="onSubmit()">
 					<div class="form-group mb-3">
@@ -240,7 +243,7 @@
 						</button>
 						<button
 							type="submit"
-							class="btn btn-primary"
+							class="btn btn-primary Prosegui"
 							[disabled]="!datiPagamento.valid"
 						>
 							Paga

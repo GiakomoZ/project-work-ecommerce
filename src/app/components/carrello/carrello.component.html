@@ -3,11 +3,11 @@
 		<div class="row d-flex justify-content-center my-4">
 			<div class="col-md-8">
 				<div class="card bg-gray mb-4">
-					<div class="card-header py-3">
+					<div class="card-header py-3 Carrello">
 						<h5 class="mb-0">Carrello - {{ carrello.length }} {{ carrello.length === 1 ? 'prodotto' : 'prodotti' }}</h5>
 					</div>
 					<div
-						class="card-body"
+						class="card-body Carrello"
 						*ngFor="let item of carrello; index as i"						
 					>
 						<div class="row">
@@ -52,7 +52,7 @@
 									<button
 										data-mdb-button-init
 										data-mdb-ripple-init
-										class="btn bg-black px-3 me-2"
+										class="btn bg-black px-3 me-2 Bottone"
 										(click)="
 											this.carrelloService.updateQuantity(
 												item.prodotto,
@@ -73,7 +73,7 @@
 									<button
 										value="{{ i }}"
 										data-mdb-ripple-init
-										class="btn bg-black px-3 ms-2"
+										class="btn bg-black px-3 ms-2 Bottone"
 										(click)="
 											this.carrelloService.updateQuantity(
 												item.prodotto,
@@ -85,7 +85,7 @@
 									</button>
 								</div>
 
-								<p class="text-start text-md-center">
+								<p class="text-start text-md-center  Prezzo">
 									<strong>{{
 										item.prodotto.price * item.quantita
 											| currency : "EUR"
@@ -96,11 +96,13 @@
 
 						
 					</div>
-					<div class="card-footer py-3 align-items-center">
+
+
+					<div class="card-footer py-3 align-items-center Carrello">
 							<div
 								class="d-flex justify-content-between align-items-center"
 							>
-								<h5 class="mb-0">
+								<h5 class="mb-0 Prezzoo">
 									Totale -
 									{{
 										this.carrelloService.getTotale()
@@ -108,7 +110,7 @@
 									}}
 								</h5>
 								<a
-									class="btn btn-success"
+									class="btn btn-success Checkout"
 									[routerLink]="'checkout'"
 									*ngIf="this.carrelloService.getTotale() > 0"
 								>
