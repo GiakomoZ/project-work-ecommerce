@@ -27,7 +27,7 @@
 
 				<div class="input-group">
 					
-					<select class="form-select categorie" #categoria id="category" (change)="search(searchInput.value,categoria.value)">
+					<select  class="form-select categorie" #categoria id="category" (change)="search(searchInput.value,categoria.value)">
 						<option value="">Tutte</option>
 						<option *ngFor="let category of categorie" [value]="category.id">{{category.name}}</option>
 					</select>
