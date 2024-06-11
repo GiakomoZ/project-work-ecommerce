@@ -79,7 +79,7 @@
 		</li>
 		<ng-container *ngFor="let page of pages">
 			<li class="page-item" [class.active]="page === paginaCorrente">
-				<button class="page-link Footer" (click)="loadProducts(page)">
+				<button class="page-link" (click)="loadProducts(page)">
 					{{ page }}
 				</button>
 			</li>
