@@ -7,39 +7,50 @@ import { ToastrService } from 'ngx-toastr';
 import { ProdottoRisposta } from '../../models/ProdottoRisposta';
 import { Categoria } from '../../models/categoria';
 import { CategorieService } from '../../services/categorie.service';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
 	selector: 'app-lista-prodotti',
 	standalone: true,
-	imports: [CommonModule, CardProdottoComponent],
+	imports: [CommonModule, CardProdottoComponent, RouterModule],
 	templateUrl: './lista-prodotti.component.html',
 	styleUrls: ['./lista-prodotti.component.css'],
 })
 export class ListaProdottiComponent implements OnInit {
-
 	prodotti: Prodotto[] = [];
 	nProdotti: number = 0;
 	nProdPerPagina: number = 10;
 	nPagine: number = 0;
 	paginaCorrente: number = 0;
 	pages: number[] = [];
+	choosenCat: number = 0;
 	categorie: Categoria[] | undefined;
 
 	constructor(
 		private productService: ProdottiService,
 		private notify: ToastrService,
-		private categorieService: CategorieService
+		private categorieService: CategorieService,
+		private route: ActivatedRoute
 	) {
 		this.categorieService.getAll().subscribe({
 			next: (data: Categoria[]) => (this.categorie = data),
 			error: (e) =>
-			this.notify.error('Errore nel caricamento delle categorie'),
+				this.notify.error('Errore nel caricamento delle categorie'),
 		});
-	 }
+	}
 
 	ngOnInit(): void {
-		this.loadProducts(1);
-		this.fetchProductCount();
+		console.log(this.route.snapshot.queryParamMap.get('cat'));
+		if (this.route.snapshot.queryParamMap.get('cat')) {
+			this.choosenCat = Number(
+				this.route.snapshot.queryParamMap.get('cat')
+			);
+			
+			this.search('', this.choosenCat.toString());
+		} else {
+			this.fetchProductCount();
+			this.loadProducts(1);
+		}
 	}
 
 	loadProducts(page: number): void {
@@ -50,7 +61,8 @@ export class ListaProdottiComponent implements OnInit {
 					this.paginaCorrente = page;
 					this.scrollToTop();
 				},
-				error: (e) => this.notify.error('Errore nel caricamento dei prodotti'),
+				error: (e) =>
+					this.notify.error('Errore nel caricamento dei prodotti'),
 			});
 		} else {
 			this.scrollToTop();
@@ -65,7 +77,9 @@ export class ListaProdottiComponent implements OnInit {
 				this.loadPages();
 			},
 			error: (e) =>
-				this.notify.error("Errore nell'ottenimento del numero di pagine"),
+				this.notify.error(
+					"Errore nell'ottenimento del numero di pagine"
+				),
 		});
 	}
 
@@ -92,24 +106,17 @@ export class ListaProdottiComponent implements OnInit {
 		return this.paginaCorrente === this.nPagine;
 	}
 
-
-	search(nome: string,categoria:string): void {
-
-		
-		
-
-		this.productService.searchProducts(nome,categoria).subscribe({
+	search(nome: string, categoria: string): void {
+		this.productService.searchProducts(nome, categoria).subscribe({
 			next: (data: ProdottoRisposta) => {
 				this.prodotti = data.result;
 				this.nProdotti = data.totalRecordsCount;
 				this.nPagine = Math.ceil(this.nProdotti / this.nProdPerPagina);
 				this.loadPages();
 			},
-			error: (e) => this.notify.error('Errore nel caricamento dei prodotti'),
+			error: (e) =>
+				this.notify.error('Errore nel caricamento dei prodotti'),
 		});
 		console.log(this.prodotti);
 	}
-
-	
-	
 }
