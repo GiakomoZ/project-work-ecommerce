@@ -89,19 +89,18 @@ export class CheckoutComponent {
 			payment: carta,
 			details: oggettiComprati,
 		};
-		this.checkoutService.inviaOrdine(dati).subscribe(
-			(response) => {
-				this.notify.success(
-					`Ordine numero ${response} inviato con successo`
-				);
-				this.checkoutService.salvaOrdine(Number(response));
-				this.carrelloService.svuota();
-				this.router.navigate(['/']);
+		this.checkoutService.inviaOrdine(dati).subscribe({
+			next: (response) => {
+			  this.notify.success(`Ordine numero ${response} inviato con successo`);
+			  this.checkoutService.salvaOrdine(Number(response));
+			  this.carrelloService.svuota();
+			  this.router.navigate(['/']);
 			},
-			(error) => {
-				this.notify.error("Errore nell'invio dell'ordine");
+			error: (error) => {
+			  this.notify.error("Errore nell'invio dell'ordine");
 			}
-		);
+		  });
+		  
 		console.log(dati);
 		console.log('submit!');
 	}

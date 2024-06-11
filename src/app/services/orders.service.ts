@@ -18,10 +18,10 @@ export class OrdersService {
 		this.ls.save('storico', JSON.stringify(this.storico));
 	}
 
+
 	inviaOrdine(dati: DatiCheckout) {
 		return this.http.post(
-			'https://projectworkapi-z5nzzkwikq-oc.a.run.app/orders',
-			dati
+			'https://projectworkapi-z5nzzkwikq-oc.a.run.app/orders',dati
 		);
 	}
 
