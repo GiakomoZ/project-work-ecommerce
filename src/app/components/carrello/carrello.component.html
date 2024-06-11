@@ -4,7 +4,7 @@
 			<div class="col-md-8">
 				<div class="card bg-gray mb-4">
 					<div class="card-header py-3">
-						<h5 class="mb-0">Cart - {{ carrello.length }} items</h5>
+						<h5 class="mb-0">Carrello - {{ carrello.length }} {{ carrello.length === 1 ? 'prodotto' : 'prodotti' }}</h5>
 					</div>
 					<div
 						class="card-body"
@@ -94,9 +94,13 @@
 							</div>
 						</div>
 
-						<div class="card-footer py-3 align-items-center">
-							<div class="d-flex justify-content-between">
-								<h5>
+						
+					</div>
+					<div class="card-footer py-3 align-items-center">
+							<div
+								class="d-flex justify-content-between align-items-center"
+							>
+								<h5 class="mb-0">
 									Totale -
 									{{
 										this.carrelloService.getTotale()
@@ -107,14 +111,13 @@
 									class="btn btn-success"
 									[routerLink]="'checkout'"
 									*ngIf="this.carrelloService.getTotale() > 0"
-									>Checkout</a
 								>
+									Checkout
+								</a>
 							</div>
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
