@@ -146,3 +146,61 @@ body {
     transition: all 0.3s ease;
 }
 
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: white;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.card {
+    background-color: #000;
+    border: 1px solid #fff;
+    padding: 1rem;
+    text-align: center;
+    flex: 1 1 calc(25% - 2rem); /* 4 cards per row by default */
+    max-width: calc(25% - 2rem);
+}
+
+.icon {
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.text {
+    font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .card {
+        flex: 1 1 calc(33.33% - 2rem); /* 3 cards per row */
+        max-width: calc(33.33% - 2rem);
+    }
+}
+
+@media (max-width: 992px) {
+    .card {
+        flex: 1 1 calc(50% - 2rem); /* 2 cards per row */
+        max-width: calc(50% - 2rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 calc(100% - 2rem); /* 1 card per row */
+        max-width: calc(100% - 2rem);
+    }
+}
