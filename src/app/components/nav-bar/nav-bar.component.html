@@ -14,7 +14,7 @@
 				aria-controls="navbarNavDropdown"
 				aria-expanded="false"
 				aria-label="Toggle navigation"
-				(click)="collapseNavbar()"
+				(click)="isMobile ? collapseNavbar() : null"
 			>
 				<span class="navbar-toggler-icon"></span>
 				<span class="align-middle">Menu</span>
@@ -30,20 +30,21 @@
 						class="nav-link active"
 						aria-current="page"
 						[routerLink]="'/'"
-						(click)="collapseNavbar()"
+						(click)="isMobile ? collapseNavbar() : null"
 						>Home</a
 					>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" [routerLink]="'shop'" (click)="collapseNavbar()">Shop</a>
+					<a class="nav-link" [routerLink]="'shop'" (click)="isMobile ? collapseNavbar() : null">Shop</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" [routerLink]="'carrello'" (click)="collapseNavbar()">Carrello</a>
+					<a class="nav-link" [routerLink]="'carrello'" (click)="isMobile ? collapseNavbar() : null">Carrello</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" [routerLink]="'about'" (click)="collapseNavbar()">About</a>
+					<a class="nav-link" [routerLink]="'about'" (click)="isMobile ? collapseNavbar() : null">About</a>
 				</li>
 			</ul>
 		</div>
 	</div>
 </div>
+

@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
+isMobile: boolean = false;
 collapseNavbar() {
   const navbar = document.getElementById('navbarNavDropdown') as HTMLElement;
   navbar.classList.toggle('show');
