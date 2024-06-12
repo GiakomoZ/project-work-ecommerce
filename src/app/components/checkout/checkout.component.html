@@ -1,256 +1,154 @@
-<div >
-	<div class="containerCheck"  id="datiPersonali" *ngIf="!switch">
-		<div class="container mt-5 ">
-			<div class="form-container   p-4 shadow rounded">
-				<h2 class="mb-4 text-center">Inserisci i tuoi dati</h2>
-				<form [formGroup]="datiPersonali" (ngSubmit)="switchForm()">
-					<div class="form-group mb-3">
-						<label for="nome" class="form-label">Nome</label>
-						<input
-							type="text"
-							class="form-control"
-							id="nome"
-							formControlName="nome"
-							placeholder="Inserisci il tuo nome"
-							[class.is-invalid]="
-								isSubmitted &&
-								datiPersonali.get('nome')?.invalid
-							"
-							required
-						/>
-						<div
-							*ngIf="
-								isSubmitted &&
-								datiPersonali.get('nome')?.invalid
-							"
-							class="invalid-feedback"
-						>
-							Il nome è obbligatorio.
-						</div>
-					</div>
-					<div class="form-group mb-3">
-						<label for="cognome" class="form-label">Cognome</label>
-						<input
-							type="text"
-							class="form-control"
-							id="cognome"
-							formControlName="cognome"
-							placeholder="Inserisci il tuo cognome"
-							[class.is-invalid]="
-								isSubmitted &&
-								datiPersonali.get('cognome')?.invalid
-							"
-							required
-						/>
-						<div
-							*ngIf="
-								isSubmitted &&
-								datiPersonali.get('cognome')?.invalid
-							"
-							class="invalid-feedback"
-						>
-							Il cognome è obbligatorio.
-						</div>
-					</div>
-					<div class="form-group mb-3">
-						<label for="email" class="form-label">Email</label>
-						<input
-							type="email"
-							class="form-control"
-							id="email"
-							formControlName="email"
-							placeholder="Inserisci la tua email"
-							[class.is-invalid]="
-								isSubmitted &&
-								datiPersonali.get('email')?.invalid
-							"
-							required
-						/>
-						<div
-							*ngIf="
-								isSubmitted &&
-								datiPersonali.get('email')?.invalid
-							"
-							class="invalid-feedback"
-						>
-							L'email è obbligatoria e deve essere valida.
-						</div>
-					</div>
-					<div class="form-group mb-4">
-						<label for="indirizzo" class="form-label"
-							>Indirizzo</label
-						>
-						<input
-							type="text"
-							class="form-control"
-							id="indirizzo"
-							formControlName="indirizzo"
-							placeholder="Inserisci il tuo indirizzo"
-							[class.is-invalid]="
-								isSubmitted &&
-								datiPersonali.get('indirizzo')?.invalid
-							"
-							required
-						/>
-						<div
-							*ngIf="
-								isSubmitted &&
-								datiPersonali.get('indirizzo')?.invalid
-							"
-							class="invalid-feedback"
-						>
-							L'indirizzo è obbligatorio.
-						</div>
-					</div>
-					<div class="d-flex justify-content-between align-items-center">
-						<a class="btn btn-secondary" [routerLink]="'/carrello'"
-							>Indietro</a
-						>
-						<button
-							type="submit"
-							class="btn  Prosegui"
-							[disabled]="!datiPersonali.valid"
-						>
-							Prosegui
-						</button>
-					</div>
-				</form>
+<div>
+	<div class="containerCheck" id="datiPersonali" *ngIf="!switch">
+	  <div class="container mt-5">
+		<div class="form-container p-4 shadow rounded">
+		  <h2 class="mb-4 text-center">Inserisci i tuoi dati</h2>
+		  <form [formGroup]="datiPersonali" (ngSubmit)="switchForm()">
+			<div class="form-group mb-3">
+			  <label for="nome" class="form-label">Nome</label>
+			  <input
+				type="text"
+				class="form-control"
+				id="nome"
+				formControlName="nome"
+				placeholder="Inserisci il tuo nome"
+				[class.is-invalid]="isSubmitted && datiPersonali.get('nome')?.invalid"
+				required
+			  />
+			  <div *ngIf="isSubmitted && datiPersonali.get('nome')?.invalid" class="invalid-feedback">
+				Il nome è obbligatorio.
+			  </div>
 			</div>
+			<div class="form-group mb-3">
+			  <label for="cognome" class="form-label">Cognome</label>
+			  <input
+				type="text"
+				class="form-control"
+				id="cognome"
+				formControlName="cognome"
+				placeholder="Inserisci il tuo cognome"
+				[class.is-invalid]="isSubmitted && datiPersonali.get('cognome')?.invalid"
+				required
+			  />
+			  <div *ngIf="isSubmitted && datiPersonali.get('cognome')?.invalid" class="invalid-feedback">
+				Il cognome è obbligatorio.
+			  </div>
+			</div>
+			<div class="form-group mb-3">
+			  <label for="email" class="form-label">Email</label>
+			  <input
+				type="email"
+				class="form-control"
+				id="email"
+				formControlName="email"
+				placeholder="Inserisci la tua email"
+				[class.is-invalid]="isSubmitted && datiPersonali.get('email')?.invalid"
+				required
+			  />
+			  <div *ngIf="isSubmitted && datiPersonali.get('email')?.invalid" class="invalid-feedback">
+				L'email è obbligatoria e deve essere valida.
+			  </div>
+			</div>
+			<div class="form-group mb-4">
+			  <label for="indirizzo" class="form-label">Indirizzo</label>
+			  <input
+				type="text"
+				class="form-control"
+				id="indirizzo"
+				formControlName="indirizzo"
+				placeholder="Inserisci il tuo indirizzo"
+				[class.is-invalid]="isSubmitted && datiPersonali.get('indirizzo')?.invalid"
+				required
+			  />
+			  <div *ngIf="isSubmitted && datiPersonali.get('indirizzo')?.invalid" class="invalid-feedback">
+				L'indirizzo è obbligatorio.
+			  </div>
+			</div>
+			<div class="d-flex justify-content-between align-items-center">
+			  <a class="btn btn-secondary" [routerLink]="'/carrello'">Indietro</a>
+			  <button type="submit" class="btn Prosegui" [disabled]="!datiPersonali.valid">Prosegui</button>
+			</div>
+		  </form>
 		</div>
+	  </div>
 	</div>
-
-
-
+  
 	<div class="containerCheck" id="datiPagamento" *ngIf="switch">
-		<div class="container mt-5">
-			<div class="form-container  p-4 shadow rounded">
-				<h2 class="mb-4 text-center">Aggiungi carta di credito</h2>
-				<form [formGroup]="datiPagamento" (ngSubmit)="onSubmit()">
-					<div class="form-group mb-3">
-						<label for="cardNumber" class="form-label"
-							>Numero di Carta di Credito</label
-						>
-						<input
-							type="text"
-							class="form-control"
-							id="cardNumber"
-							formControlName="cardNumber"
-							placeholder="Inserisci il numero della carta"
-							[class.is-invalid]="
-								isSubmitted &&
-								datiPagamento.get('cardNumber')?.invalid
-							"
-							required
-						/>
-						<div
-							*ngIf="
-								isSubmitted &&
-								datiPagamento.get('cardNumber')?.invalid
-							"
-							class="invalid-feedback"
-						>
-							IL numero di carta di credito è obbligatorio e deve
-							essere valido.
-						</div>
-					</div>
-					<div class="form-group mb-3">
-						<label for="cardHolder" class="form-label"
-							>Intestatario della Carta</label
-						>
-						<input
-							type="text"
-							class="form-control"
-							id="cardHolder"
-							formControlName="cardHolder"
-							placeholder="Inserisci il nome dell'intestatario"
-							[class.is-invalid]="
-								isSubmitted &&
-								datiPagamento.get('cardHolder')?.invalid
-							"
-							required
-						/>
-						<div
-							*ngIf="
-								isSubmitted &&
-								datiPagamento.get('cardHolder')?.invalid
-							"
-							class="invalid-feedback"
-						>
-							L'intestatario della carta è obbligatorio.
-						</div>
-					</div>
-					<div class="form-row d-flex">
-						<div class="form-group col-md-9 me-4">
-							<label for="expirationDate" class="form-label"
-								>Scadenza</label
-							>
-							<input
-								type="text"
-								type="text"
-								class="form-control"
-								id="expirationDate"
-								formControlName="expirationDate"
-								placeholder="MM/AA"
-								[class.is-invalid]="
-									isSubmitted &&
-									datiPagamento.get('expirationDate')?.invalid
-								"
-								required
-							/>
-							<div
-								*ngIf="
-									isSubmitted &&
-									datiPagamento.get('expirationDate')?.invalid
-								"
-								class="invalid-feedback"
-							>
-								La data di scadenza è obbligatoria e deve essere
-								valida (MM/AA).
-							</div>
-						</div>
-						<div class="form-group col-md-2">
-							<label for="cvv" class="form-label">CVV</label>
-							<input
-								type="text"
-								class="form-control"
-								id="cvv"
-								formControlName="cvv"
-								placeholder="CVV"
-								[class.is-invalid]="
-									isSubmitted &&
-									datiPagamento.get('cvv')?.invalid
-								"
-								required
-							/>
-							<div
-								*ngIf="
-									isSubmitted &&
-									datiPagamento.get('cvv')?.invalid
-								"
-								class="invalid-feedback"
-							>
-								Il CVV è obbligatorio e deve essere valido.
-							</div>
-						</div>
-					</div>
-					<div class="d-flex justify-content-between mt-3 align-items-center">
-						<button
-                        type="button"
-							class="btn btn-secondary"
-							(click)="switchForm()"
-						>
-							Indietro
-						</button>
-						<button
-							type="submit"
-							class="btn btn-primary Prosegui"
-							[disabled]="!datiPagamento.valid"
-						>
-							Paga
-						</button>
-					</div>
-				</form>
+	  <div class="container mt-5">
+		<div class="form-container p-4 shadow rounded">
+		  <h2 class="mb-4 text-center">Aggiungi carta di credito</h2>
+		  <form [formGroup]="datiPagamento" (ngSubmit)="onSubmit()">
+			<div class="form-group mb-3">
+			  <label for="cardNumber" class="form-label">Numero di Carta di Credito</label>
+			  <input
+				type="text"
+				class="form-control"
+				id="cardNumber"
+				formControlName="cardNumber"
+				placeholder="Inserisci il numero della carta"
+				[class.is-invalid]="isSubmitted && datiPagamento.get('cardNumber')?.invalid"
+				(input)="formatCardNumber($event)"
+				required
+			  />
+			  <div *ngIf="isSubmitted && datiPagamento.get('cardNumber')?.invalid" class="invalid-feedback">
+				Il numero di carta di credito è obbligatorio e deve essere valido.
+			  </div>
 			</div>
+			<div class="form-group mb-3">
+			  <label for="cardHolder" class="form-label">Intestatario della Carta</label>
+			  <input
+				type="text"
+				class="form-control"
+				id="cardHolder"
+				formControlName="cardHolder"
+				placeholder="Inserisci il nome dell'intestatario"
+				[class.is-invalid]="isSubmitted && datiPagamento.get('cardHolder')?.invalid"
+				required
+			  />
+			  <div *ngIf="isSubmitted && datiPagamento.get('cardHolder')?.invalid" class="invalid-feedback">
+				L'intestatario della carta è obbligatorio.
+			  </div>
+			</div>
+			<div class="form-row d-flex">
+			  <div class="form-group col-md-9 me-4">
+				<label for="expirationDate" class="form-label">Scadenza</label>
+				<input
+				  type="text"
+				  class="form-control"
+				  id="expirationDate"
+				  formControlName="expirationDate"
+				  placeholder="MM/AA"
+				  [class.is-invalid]="isSubmitted && datiPagamento.get('expirationDate')?.invalid"
+				  (input)="formatExpirationDate($event)"
+				  required
+				/>
+				<div *ngIf="isSubmitted && datiPagamento.get('expirationDate')?.invalid" class="invalid-feedback">
+				  La data di scadenza è obbligatoria e deve essere valida (MM/AA).
+				</div>
+			  </div>
+			  <div class="form-group col-md-2">
+				<label for="cvv" class="form-label">CVV</label>
+				<input
+				  type="text"
+				  class="form-control"
+				  id="cvv"
+				  formControlName="cvv"
+				  placeholder="CVV"
+				  [class.is-invalid]="isSubmitted && datiPagamento.get('cvv')?.invalid"
+				  required
+				/>
+				<div *ngIf="isSubmitted && datiPagamento.get('cvv')?.invalid" class="invalid-feedback">
+				  Il CVV è obbligatorio e deve essere valido.
+				</div>
+			  </div>
+			</div>
+			<div class="d-flex justify-content-between mt-3 align-items-center">
+			  <button type="button" class="btn btn-secondary" (click)="switchForm()">Indietro</button>
+			  <button type="submit" class="btn btn-primary Prosegui" [disabled]="!datiPagamento.valid">Paga</button>
+			</div>
+		  </form>
 		</div>
+	  </div>
 	</div>
-</div>
+  </div>
+  
