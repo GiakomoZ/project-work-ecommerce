@@ -10,8 +10,8 @@ import { LocalStorageService } from './local-storage.service';
 export class CarrelloService {
 	private carrello: Carrello[] = [];
 
-  saveToLS() {
-    this.ls.save('carrello', JSON.stringify(this.carrello));
+	saveToLS() {
+		this.ls.save('carrello', JSON.stringify(this.carrello));
 	}
 
 	addToCart(prodotto: Prodotto) {
@@ -37,28 +37,17 @@ export class CarrelloService {
 	}
 
 	updateQuantity(prodotto: Prodotto, change: number) {
-		if (change > 0) {
-			this.carrello.find(
-				(e) => e.prodotto.id == prodotto.id
-			)!.quantita += 1;
-		} else {
-			if (
-				this.carrello.find((e) => e.prodotto.id == prodotto.id)!
-					.quantita > 1
-			)
-				this.carrello.find(
-					(e) => e.prodotto.id == prodotto.id
-				)!.quantita -= 1;
+		const itemIndex = this.carrello.findIndex(
+			(e) => e.prodotto.id === prodotto.id
+		);
+		if (itemIndex >= 0) {
+			const item = this.carrello[itemIndex];
+			item.quantita += change;
+			if (item.quantita < 1) {
+				this.carrello.splice(itemIndex, 1);
+			}
+			this.saveToLS();
 		}
-		this.saveToLS();
-	}
-
-	removeItem(prodotto: Prodotto) {
-		const index = this.carrello.findIndex((e) => e.prodotto == prodotto);
-		if (index > -1) {
-			this.carrello.splice(index, 1);
-		}
-		this.saveToLS();
 	}
 
 	getTotale() {
