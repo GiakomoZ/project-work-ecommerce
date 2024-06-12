@@ -17,13 +17,8 @@
     color: yellow;
     border: 1px solid yellow;
     border-radius: 5px;
-    width: 58%;
+    width: 100%;
     margin: 0 auto;
-    margin-left: 20%;
-}
-.Prezzoo{
-    color: yellow;
-    font-weight: bold;
 }
 
 .Checkout{

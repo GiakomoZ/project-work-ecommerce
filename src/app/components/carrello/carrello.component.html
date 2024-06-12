@@ -1,123 +1,113 @@
 <section class="h-100 gradient-custom">
 	<div class="container">
-		<div class="row d-flex justify-content-center mt-2">
+		<div class="row justify-content-center mt-2">
 			<div class="col-md-8">
 				<div class="card bg-gray mb-4">
 					<div class="card-header py-3 Carrello">
-						<h5 class="mb-0">Carrello - {{ carrello.length }} {{ carrello.length === 1 ? 'prodotto' : 'prodotti' }}</h5>
+						<h5 class="mb-0">
+							Carrello - {{ carrello.length }}
+							{{
+								carrello.length === 1 ? "prodotto" : "prodotti"
+							}}
+						</h5>
 					</div>
 					<div
 						class="card-body Carrello"
-						*ngFor="let item of carrello; index as i"						
+						*ngFor="let item of carrello"
 					>
 						<div class="row">
-							<div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-								<div
-									class="bg-image hover-overlay hover-zoom ripple rounded"
-									data-mdb-ripple-color="light"
-								>
-									<app-carosello-immagini
-										[immagini]="item.prodotto.images"
-									></app-carosello-immagini>
-								</div>
-							</div>
-
-							<div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-								<p>
-									<strong>{{ item.prodotto.title }}</strong>
-								</p>
-								<button
-									type="button"
-									data-mdb-button-init
-									data-mdb-ripple-init
-									class="btn bg-white btn-sm me-1 mb-2"
-									data-mdb-tooltip-inittitle="Remove item"
-								>
-									<img
-										src="https://static-00.iconduck.com/assets.00/trash-bin-icon-2048x2048-duca73jv.png"
-										alt="Remove item"
-										height="20"
-										width="20"
-										(click)="
-											this.carrelloService.removeItem(
-												item.prodotto
-											)
-										"
-									/>
-								</button>
-							</div>
-
-							<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-								<div class="d-flex mb-4">
-									<button
-										data-mdb-button-init
-										data-mdb-ripple-init
-										class="btn bg-black px-3 me-2 Bottone"
-										(click)="
-											this.carrelloService.updateQuantity(
-												item.prodotto,
-												-1
-											)
-										"
-									>
-										<span class="text-white">-</span>
-									</button>
-
-									<p
-										type="number"
-										class="form-control mx-2 text-center"
-									>
-										{{ item.quantita }}
-									</p>
-
-									<button
-										value="{{ i }}"
-										data-mdb-ripple-init
-										class="btn bg-black px-3 ms-2 Bottone"
-										(click)="
-											this.carrelloService.updateQuantity(
-												item.prodotto,
-												1
-											)
-										"
-									>
-										<span class="text-white">+</span>
-									</button>
-								</div>
-
-								<p class="text-start text-md-center  Prezzo">
-									<strong>{{
-										item.prodotto.price * item.quantita
-											| currency : "EUR"
-									}}</strong>
-								</p>
-							</div>
-						</div>
-
-						
-					</div>
-
-
-					<div class="card-footer py-3 align-items-center Carrello">
 							<div
-								class="d-flex justify-content-between align-items-center"
+								class="col-6 col-sm-7 col-lg-3 mb-0 bg-image hover-overlay hover-zoom ripple"
 							>
-								<h5 class="mb-0 Prezzoo">
-									Totale -
-									{{
-										this.carrelloService.getTotale()
-											| currency : "EUR"
-									}}
-								</h5>
-								<a
-									class="btn btn-success Checkout"
-									[routerLink]="'checkout'"
-									*ngIf="this.carrelloService.getTotale() > 0"
-								>
-									Checkout
-								</a>
+								<app-carosello-immagini
+									[immagini]="item.prodotto.images"
+								></app-carosello-immagini>
+							</div>
+							<div class="col-6 col-sm-5 col-lg-9 mb-0">
+								<div class="row">
+									<div class="col-12 col-lg-6 mb-0">
+										<p class="text-truncate d-sm-none">
+											<strong>{{
+												item.prodotto.title
+											}}</strong>
+										</p>
+										<p class="d-none d-sm-block">
+											<strong>{{
+												item.prodotto.title
+											}}</strong>
+										</p>
+									</div>
+									<div class="col-12 col-lg-6 mb-0">
+										<div class="d-flex mb-2">
+											<button
+												class="btn bg-black Bottone"
+												(click)="
+													carrelloService.updateQuantity(
+														item.prodotto,
+														-1
+													)
+												"
+											>
+												<i
+													class="bi bi-dash text-white"
+													*ngIf="item.quantita > 1"
+												></i>
+												<i
+													class="bi bi-trash3 text-white"
+													*ngIf="item.quantita === 1"
+												></i>
+											</button>
+											<p
+												class="form-control mx-2 text-center"
+											>
+												{{ item.quantita }}
+											</p>
+											<button
+												class="btn bg-black Bottone"
+												(click)="
+													carrelloService.updateQuantity(
+														item.prodotto,
+														1
+													)
+												"
+											>
+												<i
+													class="bi bi-plus text-white"
+												></i>
+											</button>
+										</div>
+										<p class="text-center Prezzo">
+											<strong>{{
+												item.prodotto.price *
+													item.quantita
+													| currency : "EUR"
+											}}</strong>
+										</p>
+									</div>
+								</div>
 							</div>
 						</div>
+					</div>
+					<div class="card-footer py-3 align-items-center Carrello">
+						<div
+							class="d-flex justify-content-between align-items-center"
+						>
+							<h5 class="mb-0 Prezzoo">
+								Totale -
+								{{
+									carrelloService.getTotale()
+										| currency : "EUR"
+								}}
+							</h5>
+							<a
+								class="btn btn-success Checkout"
+								[routerLink]="'checkout'"
+								*ngIf="carrelloService.getTotale() > 0"
+							>
+								Checkout
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
