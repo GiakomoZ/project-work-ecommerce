@@ -32,7 +32,8 @@ export class InfoProdottoComponent {
 	private fetchProduct() {
 		this.productService.getProduct(this.id).subscribe({
 			next: (data: Prodotto) => (this.product = data),
-			error: () => this.notify.error('Errore nel caricamento del prodotto'),
+			error: () =>
+				this.notify.error('Errore nel caricamento del prodotto'),
 		});
 	}
 
@@ -43,4 +44,3 @@ export class InfoProdottoComponent {
 		}
 	}
 }
-

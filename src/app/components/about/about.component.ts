@@ -8,5 +8,4 @@ import { CommonModule } from '@angular/common';
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
-  nomi: string[] = ["Mingi", "Pascal", "Lorenz", "Alberto"];
 }

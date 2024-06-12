@@ -10,8 +10,4 @@ import { ListaCategorieComponent } from '../lista-categorie/lista-categorie.comp
 	styleUrl: './homepage.component.css',
 })
 export class HomepageComponent {
-  
-  constructor(private categorieService: CategorieService) {
-    
-  }
 }

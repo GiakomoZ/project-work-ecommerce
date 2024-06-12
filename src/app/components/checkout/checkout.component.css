@@ -6,14 +6,13 @@
 	border-radius: 10px;
 }
 
-
-.containerCheck{
+.containerCheck {
 	background-color: black;
-	color:white
+	color: white;
 }
 
-.Prosegui{
+.Prosegui {
 	background-color: black;
-	color:yellow;
+	color: yellow;
 	border: 2px solid yellow;
 }

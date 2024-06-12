@@ -1,10 +1,6 @@
-
-
 .card-body {
-	text-align: center; /* Allinea il testo al centro */
-	
+	text-align: center;
 }
-
 
 .card-title {
 	display: -webkit-box;
@@ -20,7 +16,7 @@
 	padding: 10px;
 	margin: 5px;
 	transition: all 0.25s ease-in-out;
-	
+
 	&:hover {
 		background-color: #e9ecef;
 		border-color: #dee2e6;
@@ -28,15 +24,18 @@
 	}
 }
 
-.Info{
-	background-color: white;color:black;
+.Info {
+	background-color: white;
+	color: black;
 	font-weight: bold;
 }
-.Cart{
-	background-color: black;color:white;
+.Cart {
+	background-color: black;
+	color: white;
 }
 
-.carta{
-	background-color: black;color:white;
+.carta {
+	background-color: black;
+	color: white;
 	border: 1px solid white;
 }

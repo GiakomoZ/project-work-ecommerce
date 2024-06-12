@@ -9,22 +9,29 @@ import { StelleRatingComponent } from '../stelle-rating/stelle-rating.component'
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-card-prodotto',
-  standalone: true,
-  imports: [CommonModule, CaroselloImmaginiComponent, StelleRatingComponent,RouterModule],
-  templateUrl: './card-prodotto.component.html',
-  styleUrls: ['./card-prodotto.component.css'],
+	selector: 'app-card-prodotto',
+	standalone: true,
+	imports: [
+		CommonModule,
+		CaroselloImmaginiComponent,
+		StelleRatingComponent,
+		RouterModule,
+	],
+	templateUrl: './card-prodotto.component.html',
+	styleUrls: ['./card-prodotto.component.css'],
 })
 export class CardProdottoComponent {
-  @Input() product!: Prodotto;
+	@Input() product!: Prodotto;
 
-  constructor(private carrelloService: CarrelloService, private notify: ToastrService) {}
+	constructor(
+		private carrelloService: CarrelloService,
+		private notify: ToastrService
+	) {}
 
-  addToCart() {
-    if (this.product) {
-      this.carrelloService.addToCart(this.product);
-      this.notify.success('Prodotto aggiunto al carrello');
-    }
-  }
+	addToCart() {
+		if (this.product) {
+			this.carrelloService.addToCart(this.product);
+			this.notify.success('Prodotto aggiunto al carrello');
+		}
+	}
 }
-
