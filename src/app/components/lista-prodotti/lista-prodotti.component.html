@@ -62,18 +62,17 @@
 					<option
 						*ngFor="let category of categorie"
 						[value]="category.id"
-					>
+					></option>
 
-						<option value="0">Tutte</option>
-						<option
-							*ngFor="let category of categorie"
-							[value]="category.id"
-							[selected]="category.id === choosenCat"
-						>
-							{{ category.name }}
-						</option>
-					</select>
-				</div>
+					<option value="0">Tutte</option>
+					<option
+						*ngFor="let category of categorie"
+						[value]="category.id"
+						[selected]="category.id === choosenCat"
+					>
+						{{ category.name }}
+					</option>
+				</select>
 			</div>
 		</div>
 	</div>
