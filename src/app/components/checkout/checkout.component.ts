@@ -101,11 +101,11 @@ export class CheckoutComponent {
           this.router.navigate(['/']);
         },
         error: (error) => {
-          this.notify.error("Errore nell'invio dell'ordine");
+          this.notify.error(error.error, "Errore nell'invio dell'ordine");
         }
       });
-      console.log(dati);
-      console.log('submit!');
+    } else {
+      this.notify.error('Per favore, completa tutti i campi obbligatori.');
     }
   }
 }

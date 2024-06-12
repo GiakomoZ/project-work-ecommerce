@@ -1,122 +1,76 @@
-<div >
-	<div class="containerCheck"  id="datiPersonali" *ngIf="!switch">
-		<div class="container mt-2 ">
-			<div class="form-container   p-4 shadow rounded">
-				<h2 class="mb-4 text-center">Inserisci i tuoi dati</h2>
-				<form [formGroup]="datiPersonali" (ngSubmit)="switchForm()">
-					<div class="form-group mb-3">
-						<label for="nome" class="form-label">Nome</label>
-						<input
-							type="text"
-							class="form-control"
-							id="nome"
-							formControlName="nome"
-							placeholder="Inserisci il tuo nome"
-							[class.is-invalid]="
-								isSubmitted &&
-								datiPersonali.get('nome')?.invalid
-							"
-							required
-						/>
-						<div
-							*ngIf="
-								isSubmitted &&
-								datiPersonali.get('nome')?.invalid
-							"
-							class="invalid-feedback"
-						>
-							Il nome è obbligatorio.
-						</div>
-					</div>
-					<div class="form-group mb-3">
-						<label for="cognome" class="form-label">Cognome</label>
-						<input
-							type="text"
-							class="form-control"
-							id="cognome"
-							formControlName="cognome"
-							placeholder="Inserisci il tuo cognome"
-							[class.is-invalid]="
-								isSubmitted &&
-								datiPersonali.get('cognome')?.invalid
-							"
-							required
-						/>
-						<div
-							*ngIf="
-								isSubmitted &&
-								datiPersonali.get('cognome')?.invalid
-							"
-							class="invalid-feedback"
-						>
-							Il cognome è obbligatorio.
-						</div>
-					</div>
-					<div class="form-group mb-3">
-						<label for="email" class="form-label">Email</label>
-						<input
-							type="email"
-							class="form-control"
-							id="email"
-							formControlName="email"
-							placeholder="Inserisci la tua email"
-							[class.is-invalid]="
-								isSubmitted &&
-								datiPersonali.get('email')?.invalid
-							"
-							required
-						/>
-						<div
-							*ngIf="
-								isSubmitted &&
-								datiPersonali.get('email')?.invalid
-							"
-							class="invalid-feedback"
-						>
-							L'email è obbligatoria e deve essere valida.
-						</div>
-					</div>
-					<div class="form-group mb-4">
-						<label for="indirizzo" class="form-label"
-							>Indirizzo</label
-						>
-						<input
-							type="text"
-							class="form-control"
-							id="indirizzo"
-							formControlName="indirizzo"
-							placeholder="Inserisci il tuo indirizzo"
-							[class.is-invalid]="
-								isSubmitted &&
-								datiPersonali.get('indirizzo')?.invalid
-							"
-							required
-						/>
-						<div
-							*ngIf="
-								isSubmitted &&
-								datiPersonali.get('indirizzo')?.invalid
-							"
-							class="invalid-feedback"
-						>
-							L'indirizzo è obbligatorio.
-						</div>
-					</div>
-					<div class="d-flex justify-content-between align-items-center">
-						<a class="btn btn-secondary" [routerLink]="'/carrello'"
-							>Indietro</a
-						>
-						<button
-							type="submit"
-							class="btn  Prosegui"
-							[disabled]="!datiPersonali.valid"
-						>
-							Prosegui
-						</button>
-					</div>
-				</form>
+<div>
+	<div class="containerCheck" id="datiPersonali" *ngIf="!switch">
+	  <div class="container mt-5">
+		<div class="form-container p-4 shadow rounded">
+		  <h2 class="mb-4 text-center">Inserisci i tuoi dati</h2>
+		  <form [formGroup]="datiPersonali" (ngSubmit)="switchForm()">
+			<div class="form-group mb-3">
+			  <label for="nome" class="form-label">Nome</label>
+			  <input
+				type="text"
+				class="form-control"
+				id="nome"
+				formControlName="nome"
+				placeholder="Inserisci il tuo nome"
+				[class.is-invalid]="isSubmitted && datiPersonali.get('nome')?.invalid"
+				required
+			  />
+			  <div *ngIf="isSubmitted && datiPersonali.get('nome')?.invalid" class="invalid-feedback">
+				Il nome è obbligatorio.
+			  </div>
 			</div>
+			<div class="form-group mb-3">
+			  <label for="cognome" class="form-label">Cognome</label>
+			  <input
+				type="text"
+				class="form-control"
+				id="cognome"
+				formControlName="cognome"
+				placeholder="Inserisci il tuo cognome"
+				[class.is-invalid]="isSubmitted && datiPersonali.get('cognome')?.invalid"
+				required
+			  />
+			  <div *ngIf="isSubmitted && datiPersonali.get('cognome')?.invalid" class="invalid-feedback">
+				Il cognome è obbligatorio.
+			  </div>
+			</div>
+			<div class="form-group mb-3">
+			  <label for="email" class="form-label">Email</label>
+			  <input
+				type="email"
+				class="form-control"
+				id="email"
+				formControlName="email"
+				placeholder="Inserisci la tua email"
+				[class.is-invalid]="isSubmitted && datiPersonali.get('email')?.invalid"
+				required
+			  />
+			  <div *ngIf="isSubmitted && datiPersonali.get('email')?.invalid" class="invalid-feedback">
+				L'email è obbligatoria e deve essere valida.
+			  </div>
+			</div>
+			<div class="form-group mb-4">
+			  <label for="indirizzo" class="form-label">Indirizzo</label>
+			  <input
+				type="text"
+				class="form-control"
+				id="indirizzo"
+				formControlName="indirizzo"
+				placeholder="Inserisci il tuo indirizzo"
+				[class.is-invalid]="isSubmitted && datiPersonali.get('indirizzo')?.invalid"
+				required
+			  />
+			  <div *ngIf="isSubmitted && datiPersonali.get('indirizzo')?.invalid" class="invalid-feedback">
+				L'indirizzo è obbligatorio.
+			  </div>
+			</div>
+			<div class="d-flex justify-content-between align-items-center">
+			  <a class="btn btn-secondary" [routerLink]="'/carrello'">Indietro</a>
+			  <button type="submit" class="btn Prosegui" [disabled]="!datiPersonali.valid">Prosegui</button>
+			</div>
+		  </form>
 		</div>
+	  </div>
 	</div>
   
 	<div class="containerCheck" id="datiPagamento" *ngIf="switch">
@@ -190,7 +144,7 @@
 			</div>
 			<div class="d-flex justify-content-between mt-3 align-items-center">
 			  <button type="button" class="btn btn-secondary" (click)="switchForm()">Indietro</button>
-			  <button type="submit" class="btn btn-primary Prosegui" [disabled]="!datiPagamento.valid">Paga</button>
+			  <button type="submit" class="btn btn-primary Prosegui">Paga</button>
 			</div>
 		  </form>
 		</div>
