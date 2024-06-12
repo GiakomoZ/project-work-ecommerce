@@ -104,8 +104,8 @@ export class CheckoutComponent {
           this.notify.error("Errore nell'invio dell'ordine");
         }
       });
-      console.log(dati);
-      console.log('submit!');
+    } else {
+      this.notify.error('Per favore, completa tutti i campi obbligatori.');
     }
   }
 }
