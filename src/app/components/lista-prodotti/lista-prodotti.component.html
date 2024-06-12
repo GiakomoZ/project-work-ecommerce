@@ -3,15 +3,17 @@
 		<div class="col-md-5">
 			<div class="container">
 				<div class="input-group mb-4">
-
-
 					<div class="input-group-prepend bottoneSearch">
 						<button
 							class="btn btn-outline-secondary bottoneSearch"
 							type="button"
 							(click)="
 								searchInput.value = '';
-								loadProducts(1, searchInput.value, categoria.value)
+								loadProducts(
+									1,
+									searchInput.value,
+									categoria.value
+								)
 							"
 						>
 							<i class="fas fa-times"></i>
@@ -21,47 +23,60 @@
 					<input
 						type="text"
 						#searchInput
-						class="form-control  CasellaRicerca"
+						class="form-control CasellaRicerca"
 						placeholder="Cerca..."
-						(keyup.enter)="loadProducts(1, searchInput.value, categoria.value)"
+						(keyup.enter)="
+							loadProducts(1, searchInput.value, categoria.value)
+						"
 					/>
 
-
-					<div class=" bottoneSearch">
+					<div class="bottoneSearch">
 						<button
 							class="btn btn-outline-secondary bottoneSearch"
 							type="button"
-							(click)="loadProducts(1, searchInput.value, categoria.value)"
+							(click)="
+								loadProducts(
+									1,
+									searchInput.value,
+									categoria.value
+								)
+							"
 						>
 							<i class="fas fa-search"></i>
 						</button>
 					</div>
-				
 				</div>
 			</div>
 
-				<div class="input-group">
-					<select
-						class="form-select categorie"
-						#categoria
-						id="category"
-						(change)="loadProducts(1, searchInput.value, categoria.value)"
+			<div class="input-group">
+				<select
+					class="form-select categorie"
+					#categoria
+					id="category"
+					(change)="
+						loadProducts(1, searchInput.value, categoria.value)
+					"
+				>
+					<option value="0"></option>
+					<option value="0">Tutte</option>
+					<option
+						*ngFor="let category of categorie"
+						[value]="category.id"
+					></option>
+
+					<option value="0">Tutte</option>
+					<option
+						*ngFor="let category of categorie"
+						[value]="category.id"
+						[selected]="category.id === choosenCat"
 					>
-						
-						<option value="0">Tutte</option>
-						<option
-							*ngFor="let category of categorie"
-							[value]="category.id"
-							[selected]="category.id === choosenCat"
-						>
-							{{ category.name }}
-						</option>
-					</select>
-				</div>
+						{{ category.name }}
+					</option>
+				</select>
 			</div>
 		</div>
 	</div>
-
+</div>
 
 <div class="container mt-4">
 	<div

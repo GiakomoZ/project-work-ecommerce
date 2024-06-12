@@ -1,30 +1,27 @@
-
-.Carrello{
-    background-color: black;
-    color: white;
-    border: 1px solid white;
+.Carrello {
+	background-color: black;
+	color: white;
+	border: 1px solid white;
 }
 
-
-.Bottone{
-    background-color: white;
-    color: black;
-    border: 1px solid white;
-    height: 100%;
+.Bottone {
+	background-color: white;
+	color: black;
+	border: 1px solid white;
+	height: 100%;
 }
 
-.Prezzo{
-    color: yellow;
-    border: 1px solid yellow;
-    border-radius: 5px;
-    width: 100%;
-    margin: 0 auto;
+.Prezzo {
+	color: yellow;
+	border: 1px solid yellow;
+	border-radius: 5px;
+	width: 100%;
+	margin: 0 auto;
 }
 
-.Checkout{
-    background-color: black;
-    color: yellow;
-    border: 2px solid yellow;
-    border-radius: 5px;
-    
+.Checkout {
+	background-color: black;
+	color: yellow;
+	border: 2px solid yellow;
+	border-radius: 5px;
 }

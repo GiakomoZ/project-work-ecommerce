@@ -9,11 +9,10 @@ import { Component, Input } from '@angular/core';
 	styleUrl: './stelle-rating.component.css',
 })
 export class StelleRatingComponent {
-  @Input() rating: number = 0;
+	@Input() rating: number = 0;
 	getStarsArray(stars: number): any[] {
 		const fullStars = Math.floor(stars);
 		const halfStars = stars % 1 >= 0.5 ? 1 : 0;
-		const emptyStars = 5 - fullStars - halfStars;
 
 		const starsArray = [];
 
@@ -23,10 +22,6 @@ export class StelleRatingComponent {
 
 		if (halfStars === 1) {
 			starsArray.push({ isFilled: false, isHalf: true });
-		}
-
-		for (let i = 0; i < emptyStars; i++) {
-			starsArray.push({ isFilled: false, isHalf: false });
 		}
 
 		return starsArray;

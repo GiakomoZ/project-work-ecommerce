@@ -8,10 +8,12 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class OrdersService {
 	storico: number[] = []; // elenco degli id degli ordini inviati
-	constructor(private http: HttpClient, private ls: LocalStorageService) {}
+	constructor(private http: HttpClient, private ls: LocalStorageService) {
+		this.storico=JSON.parse(this.ls.get('storico') || '[]');
+	}
 
 	saveToLS() {
-		localStorage.setItem('storico', JSON.stringify(this.storico));
+		this.ls.save('storico', JSON.stringify(this.storico));
 	}
 
 

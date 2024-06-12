@@ -15,9 +15,11 @@
 				<div class="price">
 					{{ product.price | currency : "EUR" }}
 				</div>
-			<div class="rating">
-				<app-stelle-rating [rating]="product.stars"></app-stelle-rating>
-			</div>
+				<div class="rating">
+					<app-stelle-rating
+						[rating]="product.stars"
+					></app-stelle-rating>
+				</div>
 				<div class="category rounded">{{ product.category.name }}</div>
 			</div>
 			<div class="description rounded">
