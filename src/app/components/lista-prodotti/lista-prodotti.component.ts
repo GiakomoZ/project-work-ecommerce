@@ -4,7 +4,7 @@ import { Prodotto } from '../../models/prodotto';
 import { ToastrService } from 'ngx-toastr';
 import { Categoria } from '../../models/categoria';
 import { CategorieService } from '../../services/categorie.service';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CardProdottoComponent } from '../card-prodotto/card-prodotto.component';
 import { ProdottoRisposta } from '../../models/ProdottoRisposta';
@@ -33,7 +33,8 @@ export class ListaProdottiComponent implements OnInit {
 		private productService: ProdottiService,
 		private notify: ToastrService,
 		private categorieService: CategorieService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private router: Router
 	) {
 		this.loadCategories();
 	}
@@ -52,7 +53,15 @@ export class ListaProdottiComponent implements OnInit {
 		});
 	}
 
+	switchCategory(cat: string) {
+		this.choosenCat = Number(cat);
+		this.router.navigateByUrl('/shop?cat='+this.choosenCat)
+		this.loadProducts(this.paginaCorrente,"",cat);
+	}
+
 	loadProducts(page: number, query: string = '', cat: string = '') {
+		
+
 		this.searchQuery = query;
 		if (cat === '') {
 			cat = String(this.choosenCat);
