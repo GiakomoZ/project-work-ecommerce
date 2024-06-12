@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-2">
 	<div class="row justify-content-center">
 		<div class="col-md-5">
 			<div class="container">
@@ -11,7 +11,7 @@
 							type="button"
 							(click)="
 								searchInput.value = '';
-								search(searchInput.value, categoria.value)
+								loadProducts(1, searchInput.value, categoria.value)
 							"
 						>
 							<i class="fas fa-times"></i>
@@ -23,7 +23,7 @@
 						#searchInput
 						class="form-control  CasellaRicerca"
 						placeholder="Cerca..."
-						(keyup.enter)="search(searchInput.value, categoria.value)"
+						(keyup.enter)="loadProducts(1, searchInput.value, categoria.value)"
 					/>
 
 
@@ -31,7 +31,7 @@
 						<button
 							class="btn btn-outline-secondary bottoneSearch"
 							type="button"
-							(click)="search(searchInput.value, categoria.value)"
+							(click)="loadProducts(1, searchInput.value, categoria.value)"
 						>
 							<i class="fas fa-search"></i>
 						</button>
@@ -45,10 +45,10 @@
 						class="form-select categorie"
 						#categoria
 						id="category"
-						(change)="search(searchInput.value, categoria.value)"
+						(change)="loadProducts(1, searchInput.value, categoria.value)"
 					>
-						<option value=""></option>
-						<option value="">Tutte</option>
+						<option value="0"></option>
+						<option value="0">Tutte</option>
 						<option
 							*ngFor="let category of categorie"
 							[value]="category.id"
