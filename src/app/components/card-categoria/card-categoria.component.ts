@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 	styleUrl: './card-categoria.component.css',
 })
 export class CardCategoriaComponent {
-  @Input() id: number = 0;
+	@Input() id: number = 0;
 	@Input() nome: string = '';
 	@Input() image: string = '';
 }

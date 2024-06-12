@@ -63,8 +63,6 @@ export class CarrelloService {
 	}
 
 	constructor(private ls: LocalStorageService) {
-		if (ls.get('carrello') != null) {
-			this.carrello = JSON.parse(localStorage.getItem('carrello')!);
-		}
+		this.carrello = JSON.parse(this.ls.get('carrello') || '[]');
 	}
 }

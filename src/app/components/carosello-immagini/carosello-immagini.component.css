@@ -1,5 +1,4 @@
 .carousel-item img {
-	/*height: 300px; /* Altezza fissa delle immagini all'interno del carousel */
 	width: 200px;
-	object-fit: cover; /* Assicura che le immagini si adattino all'area disponibile */
+	object-fit: cover; 
 }

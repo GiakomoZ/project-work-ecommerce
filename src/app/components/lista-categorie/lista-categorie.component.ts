@@ -14,7 +14,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListaCategorieComponent {
 	categorie: Categoria[] = [];
-	constructor(private categorieService: CategorieService, private notify: ToastrService) {
+	constructor(
+		private categorieService: CategorieService,
+		private notify: ToastrService
+	) {
 		categorieService.getAll().subscribe({
 			next: (data: Categoria[]) => (this.categorie = data),
 			error: (e) =>
