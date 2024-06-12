@@ -6,20 +6,35 @@
 			[titolo]="product.title"
 		></app-carosello-immagini>
 		<div class="card-body">
-
-			<h5 class="card-title">{{ product.title }}<br>     </h5>
-			<p class="card-text"><strong>Prezzo:</strong> {{ product.price|currency:"EUR" }}</p>
+			<h5 class="card-title">{{ product.title }}<br />     </h5>
+			<p class="card-text">
+				<strong>Prezzo:</strong> {{ product.price | currency : "EUR" }}
+			</p>
 			<app-stelle-rating [rating]="product.stars"></app-stelle-rating>
-			</div>
-			<div class="text-center justify-content-around">
-
-				<a class="btn Info" [routerLink]="[product.id]" title="Maggiori informazioni sul prodotto" aria-label="Maggiori informazioni sul prodotto" role="tooltip" data-bs-toggle="tooltip" data-bs-placement="top">
-					<i class="bi bi-info" ></i>
-				</a>
-				<button class="btn Cart"  (click)="addToCart()"  title="Maggiori informazioni sul prodotto" aria-label="Maggiori informazioni sul prodotto" role="tooltip" data-bs-toggle="tooltip" data-bs-placement="top">
-					<i class="bi bi-cart-fill"></i>
-				</button>
-				</div>
-				</div>
-			
+		</div>
+		<div class="text-center justify-content-around mb-2">
+			<a
+				class="btn Info"
+				[routerLink]="[product.id]"
+				title="Maggiori informazioni sul prodotto"
+				aria-label="Maggiori informazioni sul prodotto"
+				role="tooltip"
+				data-bs-toggle="tooltip"
+				data-bs-placement="top"
+			>
+				<i class="bi bi-info"></i>
+			</a>
+			<button
+				class="btn Cart"
+				(click)="addToCart()"
+				title="Maggiori informazioni sul prodotto"
+				aria-label="Maggiori informazioni sul prodotto"
+				role="tooltip"
+				data-bs-toggle="tooltip"
+				data-bs-placement="top"
+			>
+				<i class="bi bi-cart-fill"></i>
+			</button>
+		</div>
+	</div>
 </div>
