@@ -11,16 +11,14 @@
 		</div>
 		<div class="col-sm-8">
 			<div class="product-title">{{ product.title }}</div>
-			<div class="d-flex justify-content-between align-items-center">
-				<div class="price">
-					{{ product.price | currency : "EUR" }}
-				</div>
+			<div class="category rounded">Categoria: {{ product.category.name }}</div>
 				<div class="rating">
 					<app-stelle-rating
 						[rating]="product.stars"
 					></app-stelle-rating>
 				</div>
-				<div class="category rounded">{{ product.category.name }}</div>
+			<div class="price">
+				{{ product.price | currency : "EUR" }}
 			</div>
 			<div class="description rounded">
 				<p>{{ product.description }}</p>
