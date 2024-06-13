@@ -1,8 +1,8 @@
 <div>
 	<div class="containerCheck" id="datiPersonali" *ngIf="!switch">
-		<div class="container mt-5">
+		<div class="container mt-2 mb-4">
 			<div class="form-container p-4 shadow rounded">
-				<h2 class="mb-4 text-center">Inserisci i tuoi dati</h2>
+				<h2 class="mb-2 text-center">Inserisci i tuoi dati</h2>
 				<form [formGroup]="datiPersonali" (ngSubmit)="switchForm()">
 					<div class="form-group mb-3">
 						<label for="nome" class="form-label">Nome</label>
@@ -122,7 +122,7 @@
 	</div>
 
 	<div class="containerCheck" id="datiPagamento" *ngIf="switch">
-		<div class="container mt-5">
+		<div class="container mt-2">
 			<div class="form-container p-4 shadow rounded">
 				<h2 class="mb-4 text-center">Aggiungi carta di credito</h2>
 				<form [formGroup]="datiPagamento" (ngSubmit)="onSubmit()">
@@ -221,6 +221,7 @@
 									isSubmitted &&
 									datiPagamento.get('cvv')?.invalid
 								"
+								(input)="formatCvv($event)"
 								required
 							/>
 							<div

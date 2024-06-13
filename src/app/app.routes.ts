@@ -14,5 +14,6 @@ export const routes: Routes = [
 	{ path: 'carrello', component: CarrelloComponent },
 	{ path: 'carrello/checkout', component: CheckoutComponent },
 	{ path: 'about', component: AboutComponent },
+	{path:"home", component:HomepageComponent},
 	{ path: '**', component: NotfoundComponent },
 ];

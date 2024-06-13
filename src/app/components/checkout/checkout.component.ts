@@ -87,6 +87,14 @@ export class CheckoutComponent {
 			?.setValue(input, { emitEvent: false });
 	}
 
+	formatCvv(event: any): void {
+		let input = event.target.value.replace(/\D/g, '');
+		input = input.substring(0, 3);
+		this.datiPagamento
+			.get('cvv')
+			?.setValue(input, { emitEvent: false });
+	}
+
 	onSubmit() {
 		this.isSubmitted = true;
 		if (this.datiPagamento.valid) {
