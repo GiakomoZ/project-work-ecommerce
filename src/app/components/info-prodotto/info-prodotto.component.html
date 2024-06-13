@@ -13,18 +13,18 @@
 			<div class="mb-3">
 				<div>
 					<div class="product-title">{{ product.title }}</div>
-						<div class="category rounded m">
-							categoria: {{ product.category.name }}
-						</div>
-						<div class="rating">
-							<app-stelle-rating
-								[rating]="product.stars"
-							></app-stelle-rating>
-						</div>
-						<div class="price">
-							{{ product.price | currency : "EUR" }}
-						</div>
-						<div class="description rounded">
+					<div class="category rounded m">
+						categoria: {{ product.category.name }}
+					</div>
+					<div class="rating">
+						<app-stelle-rating
+							[rating]="product.stars"
+						></app-stelle-rating>
+					</div>
+					<div class="price">
+						{{ product.price | currency : "EUR" }}
+					</div>
+					<div class="description rounded">
 						<p>{{ product.description }}</p>
 					</div>
 				</div>
