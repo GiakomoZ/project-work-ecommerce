@@ -18,7 +18,13 @@
 	width: 100%;
 	margin: 0 auto;
 }
-
+.Rimuovi{
+	background-color: black;
+	color: white;
+	border: 2px solid white;
+	border-radius: 5px;
+	width: 100%;
+}
 .Checkout {
 	background-color: black;
 	color: yellow;

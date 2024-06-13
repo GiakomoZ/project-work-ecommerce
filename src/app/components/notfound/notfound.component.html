@@ -1,10 +1,14 @@
-<div class="container bg-white rounded">
-    <div class="row justify-content-center p-4">
-        <div class="col-md-6 text-center">
-            <div class="error-message display-1 mb-3 text-danger">404</div>
-            <p class="lead">Pagina non trovata</p>
-            <p>La pagina che stai cercando non esiste o è stata spostata.</p>
-            <a [routerLink]="'/'" class="btn btn-primary btn-lg mt-3 rounded">Torna alla Home</a>
-        </div>
-    </div>
+<div class="container rounded py-3">
+	<div class="row justify-content-center p-4">
+		<div class="notfound">
+			<div class="col-md-6 text-center">
+				<div class="error-message display-1 m-2 notfoundtext">404</div>
+				<p class="lead">Pagina non trovata</p>
+				<p>
+					La pagina che stai cercando non esiste o è stata spostata.
+				</p>
+				<a [routerLink]="'/'" class="btn Home mb-3">Torna alla Home</a>
+			</div>
+		</div>
+	</div>
 </div>

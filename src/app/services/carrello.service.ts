@@ -50,6 +50,14 @@ export class CarrelloService {
 		}
 	}
 
+	removeItem(prodotto: Prodotto) {
+		const index = this.carrello.findIndex((e) => e.prodotto == prodotto);
+		if (index > -1) {
+			this.carrello.splice(index, 1);
+		}
+		this.saveToLS();
+	}
+
 	getTotale() {
 		return this.carrello.reduce(
 			(sum, item) => sum + item.quantita * item.prodotto.price,
