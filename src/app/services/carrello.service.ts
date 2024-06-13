@@ -29,6 +29,10 @@ export class CarrelloService {
 		return this.carrello;
 	}
 
+	getItemsCount() {
+		return this.carrello.reduce((sum, item) => sum + item.quantita, 0);
+	}
+
 	getItemsCheckout(): OggettiComprati[] {
 		return this.carrello.map((e) => ({
 			idProduct: e.prodotto.id,

@@ -5,9 +5,11 @@
 				<div class="card bg-gray mb-4">
 					<div class="card-header py-3 Carrello">
 						<h5 class="mb-0">
-							Carrello - {{ carrello.length }}
+							Carrello - {{ carrelloService.getItemsCount() }}
 							{{
-								carrello.length === 1 ? "prodotto" : "prodotti"
+								carrelloService.getItemsCount() === 1
+									? "prodotto"
+									: "prodotti"
 							}}
 						</h5>
 					</div>
