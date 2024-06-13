@@ -9,21 +9,25 @@
 				></app-carosello-immagini>
 			</div>
 		</div>
-		<div class="col-sm-8">
-			<div class="product-title">{{ product.title }}</div>
-			<div class="category rounded">Categoria: {{ product.category.name }}</div>
+		<div class="col-sm-8 d-flex flex-column">
+			<div class="flex-grow-1">
+				<div class="product-title">{{ product.title }}</div>
+				<div class="category rounded">
+					Categoria: {{ product.category.name }}
+				</div>
 				<div class="rating">
 					<app-stelle-rating
 						[rating]="product.stars"
 					></app-stelle-rating>
 				</div>
-			<div class="price">
-				{{ product.price | currency : "EUR" }}
+				<div class="price">
+					{{ product.price | currency : "EUR" }}
+				</div>
+				<div class="description rounded">
+					<p>{{ product.description }}</p>
+				</div>
 			</div>
-			<div class="description rounded">
-				<p>{{ product.description }}</p>
-			</div>
-			<div class="d-flex justify-content-end">
+			<div class="d-flex justify-content-end mt-auto">
 				<button
 					type="button"
 					class="btn btn-lg mt-3 rounded Bottone"
