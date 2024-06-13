@@ -7,20 +7,26 @@ import { LocalStorageService } from './local-storage.service';
 	providedIn: 'root',
 })
 export class OrdersService {
-	storico: number[] = []; // elenco degli id degli ordini inviati
+	storico: number[] = [];
+	apiUrl = 'https://projectworkapi-z5nzzkwikq-oc.a.run.app/orders';
 	constructor(private http: HttpClient, private ls: LocalStorageService) {
-		this.storico=JSON.parse(this.ls.get('storico') || '[]');
+		this.storico = JSON.parse(this.ls.get('storico') || '[]');
+	}
+
+	getStorico() {
+		return this.storico;
 	}
 
 	saveToLS() {
 		this.ls.save('storico', JSON.stringify(this.storico));
 	}
 
-
 	inviaOrdine(dati: DatiCheckout) {
-		return this.http.post(
-			'https://projectworkapi-z5nzzkwikq-oc.a.run.app/orders',dati
-		);
+		return this.http.post(this.apiUrl, dati);
+	}
+
+	getOrdine(n: number) {
+		return this.http.get<DatiCheckout>(this.apiUrl + '/' + n);
 	}
 
 	salvaOrdine(id: number) {

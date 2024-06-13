@@ -1,0 +1,43 @@
+<div class="accordion" id="accordionExample">
+	<div class="accordion-item">
+		<h2 class="accordion-header">
+			<button
+				class="accordion-button"
+				type="button"
+				data-bs-toggle="collapse"
+				data-bs-target="#collapseOne"
+				aria-expanded="true"
+				aria-controls="collapseOne"
+			>
+				Storico ordini
+			</button>
+		</h2>
+		<div
+			id="collapseOne"
+			class="accordion-collapse collapse"
+			data-bs-parent="#accordionExample"
+		>
+			<div class="accordion-body">
+				<ng-container *ngFor="let order of listaOrdini">
+                    <div class="row m-1 mx-0">
+                        <div class="col-12">
+                            <div class="card shadow rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Indirizzo spedizione: {{ order.address }}</h5>
+                                    <p class="card-text"><strong>Nome:</strong> {{ order.clientName }}</p>
+                                    <p class="card-text"><strong>Email:</strong> {{ order.email }}</p>
+                                    <p class="card-text"><strong>Lista oggetti acquistati:</strong></p>
+                                    <ul>
+                                        <li *ngFor="let oggetto of order.details">
+                                            {{ oggetto.idProduct }} - Quantità: {{ oggetto.quantity }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</ng-container>
+			</div>
+		</div>
+	</div>
+</div>

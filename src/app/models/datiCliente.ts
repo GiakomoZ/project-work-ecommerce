@@ -6,6 +6,6 @@ export interface DatiCheckout {
 	address: string;
 	email: string;
 	totalPrice: number;
-	payment: metodoPagamento;
+	payment: metodoPagamento|null;
 	details: OggettiComprati[];
 }
