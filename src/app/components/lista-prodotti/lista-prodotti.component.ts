@@ -56,7 +56,7 @@ export class ListaProdottiComponent implements OnInit {
 	switchCategory(cat: string) {
 		this.choosenCat = Number(cat);
 		this.router.navigateByUrl('/shop?cat='+this.choosenCat)
-		this.loadProducts(this.paginaCorrente,"",cat);
+		this.loadProducts(1,"",cat);
 	}
 
 	loadProducts(page: number, query: string = '', cat: string = '') {
