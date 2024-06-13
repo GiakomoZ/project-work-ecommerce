@@ -1,0 +1,43 @@
+.storico-ordini {
+	background-color: black;
+	color: white;
+	border: 1px solid white;
+}
+
+.card-storico {
+	background-color: black;
+	color: white;
+	border: 1px solid white;
+	margin-bottom: 10px;
+}
+
+.titolo-storico {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.indietro {
+	background-color: black;
+	color: white;
+	border: 2px solid white;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.indietro:hover {
+	background-color: white;
+	color: black;
+}
+
+.elenco-prodotti {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.elenco-prodotti li {
+	margin-bottom: 10px;
+}
+
+.elenco-prodotti span {
+	margin-left: 10px;
+}

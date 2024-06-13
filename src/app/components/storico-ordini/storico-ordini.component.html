@@ -1,42 +1,78 @@
-<div class="accordion" id="accordionExample">
-	<div class="accordion-item">
-		<h2 class="accordion-header">
-			<button
-				class="accordion-button"
-				type="button"
-				data-bs-toggle="collapse"
-				data-bs-target="#collapseOne"
-				aria-expanded="true"
-				aria-controls="collapseOne"
+<div class="rounded bg-black">
+	<div
+		id="accordion-storico-ordini"
+		class="accordion mb-4 rounded storico-ordini"
+	>
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button
+					class="accordion-button rounded collapsed bg-black text-white"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#collapseOne"
+					aria-expanded="true"
+					aria-controls="collapseOne"
+				>
+					Storico ordini
+				</button>
+			</h2>
+			<div
+				id="collapseOne"
+				class="accordion-collapse collapse rounded text-white"
+				data-bs-parent="#accordion-storico-ordini"
 			>
-				Storico ordini
-			</button>
-		</h2>
-		<div
-			id="collapseOne"
-			class="accordion-collapse collapse"
-			data-bs-parent="#accordionExample"
-		>
-			<div class="accordion-body">
-				<ng-container *ngFor="let order of listaOrdini">
-                    <div class="row m-1 mx-0">
-                        <div class="col-12">
-                            <div class="card shadow rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">Indirizzo spedizione: {{ order.address }}</h5>
-                                    <p class="card-text"><strong>Nome:</strong> {{ order.clientName }}</p>
-                                    <p class="card-text"><strong>Email:</strong> {{ order.email }}</p>
-                                    <p class="card-text"><strong>Lista oggetti acquistati:</strong></p>
-                                    <ul>
-                                        <li *ngFor="let oggetto of order.details">
-                                            {{ oggetto.idProduct }} - Quantità: {{ oggetto.quantity }}
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-				</ng-container>
+				<div class="accordion-body bg-black rounded">
+					<div
+						class="card-storico shadow rounded p-3"
+						*ngFor="let order of listaOrdini"
+					>
+						<div class="row g-0">
+							<div class="col-12 col-sm-6">
+								<div class="card-body">
+									<h5 class="titolo-storico">
+										{{ order.clientName }}
+									</h5>
+								</div>
+								<div class="card-body">
+									<p class="card-text">
+										Indirizzo: {{ order.address }}
+									</p>
+								</div>
+								<div class="card-body">
+									<p class="card-text text-truncate d-sm-none mb-1">
+										Email: {{
+											order.email
+										}}
+									</p>
+									<p class="card-text d-none d-sm-block mb-1">
+										Email: {{
+											order.email
+										}}
+									</p>
+								</div>
+							</div>
+							<div class="col-12 col-sm-6">
+								<div class="card-body">
+									<p class="card-text">
+										Numero prodotti:
+										{{ order.details.length }}
+									</p>
+								</div>
+								<div class="card-body">
+									<p class="card-text">
+										<strong
+											>Totale:
+											{{
+												order.totalPrice
+													| currency : "EUR"
+											}}</strong
+										>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
