@@ -13,19 +13,17 @@
 							formControlName="nome"
 							placeholder="Inserisci il tuo nome"
 							[class.is-invalid]="
-								isSubmitted &&
 								datiPersonali.get('nome')?.invalid
 							"
 							required
 						/>
 						<div
 							*ngIf="
-								isSubmitted &&
 								datiPersonali.get('nome')?.invalid
 							"
 							class="invalid-feedback"
 						>
-							Il nome è obbligatorio.
+							Il nome è obbligatorio e deve essere valido.
 						</div>
 					</div>
 					<div class="form-group mb-3">
@@ -37,19 +35,17 @@
 							formControlName="cognome"
 							placeholder="Inserisci il tuo cognome"
 							[class.is-invalid]="
-								isSubmitted &&
 								datiPersonali.get('cognome')?.invalid
 							"
 							required
 						/>
 						<div
 							*ngIf="
-								isSubmitted &&
 								datiPersonali.get('cognome')?.invalid
 							"
 							class="invalid-feedback"
 						>
-							Il cognome è obbligatorio.
+							Il cognome è obbligatorio e deve essere valido.
 						</div>
 					</div>
 					<div class="form-group mb-3">
@@ -61,14 +57,12 @@
 							formControlName="email"
 							placeholder="Inserisci la tua email"
 							[class.is-invalid]="
-								isSubmitted &&
 								datiPersonali.get('email')?.invalid
 							"
 							required
 						/>
 						<div
 							*ngIf="
-								isSubmitted &&
 								datiPersonali.get('email')?.invalid
 							"
 							class="invalid-feedback"
@@ -87,19 +81,17 @@
 							formControlName="indirizzo"
 							placeholder="Inserisci il tuo indirizzo"
 							[class.is-invalid]="
-								isSubmitted &&
 								datiPersonali.get('indirizzo')?.invalid
 							"
 							required
 						/>
 						<div
 							*ngIf="
-								isSubmitted &&
 								datiPersonali.get('indirizzo')?.invalid
 							"
 							class="invalid-feedback"
 						>
-							L'indirizzo è obbligatorio.
+							L'indirizzo è obbligatorio e deve essere valido.
 						</div>
 					</div>
 					<div

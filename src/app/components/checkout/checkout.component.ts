@@ -25,21 +25,20 @@ export class CheckoutComponent {
 	switch: boolean = false;
 	isSubmitted: boolean = false;
 	datiPersonali: FormGroup = new FormGroup({
-		nome: new FormControl<string>('', [Validators.required]),
-		cognome: new FormControl<string>('', [Validators.required]),
+		nome: new FormControl<string>('', [Validators.required, Validators.pattern(/^[a-zA-Z\s']+$/)]),
+		cognome: new FormControl<string>('', [Validators.required, Validators.pattern(/^[a-zA-Z\s']+$/)]),
 		email: new FormControl<string>('', [
 			Validators.required,
 			Validators.email,
 		]),
-		indirizzo: new FormControl<string>('', [Validators.required]),
+		indirizzo: new FormControl<string>('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s',.-/]+$/)]),
 	});
-
 	datiPagamento: FormGroup = new FormGroup({
 		cardNumber: new FormControl<string>('', [
 			Validators.required,
 			Validators.pattern('^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$'),
 		]),
-		cardHolder: new FormControl<string>('', [Validators.required]),
+		cardHolder: new FormControl<string>('', [Validators.required, Validators.pattern(/^[a-zA-Z\s']+$/)]),
 		expirationDate: new FormControl<string>('', [
 			Validators.required,
 			Validators.pattern('^(0[1-9]|1[0-2])/([0-9]{2})$'),
