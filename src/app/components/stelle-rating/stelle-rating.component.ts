@@ -13,17 +13,13 @@ export class StelleRatingComponent {
 	getStarsArray(stars: number): any[] {
 		const fullStars = Math.floor(stars);
 		const halfStars = stars % 1 >= 0.5 ? 1 : 0;
+		const emptyStars = 5-fullStars-halfStars;
 
-		const starsArray = [];
-
+		const starsArray = new Array(5).fill({ isFilled: false, isHalf: false });
 		for (let i = 0; i < fullStars; i++) {
-			starsArray.push({ isFilled: true, isHalf: false });
+			starsArray[i] = { isFilled: true, isHalf: false };
 		}
-
-		if (halfStars === 1) {
-			starsArray.push({ isFilled: false, isHalf: true });
-		}
-
+		if (halfStars) starsArray[fullStars] = { isFilled: false, isHalf: true };
 		return starsArray;
 	}
 }

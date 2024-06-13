@@ -1,10 +1,10 @@
 <p class="card-text">
 	<ng-container *ngFor="let star of getStarsArray(rating)">
 		<span
-			class="bi"
+			class="bi text-warning"
 			[class.bi-star-fill]="star.isFilled"
 			[class.bi-star-half]="star.isHalf"
-			[class.text-warning]="star.isFilled || star.isHalf"
+			[class.bi-star]="!star.isFilled && !star.isHalf"
 		></span>
 	</ng-container>
 </p>

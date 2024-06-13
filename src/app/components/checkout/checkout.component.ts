@@ -95,6 +95,14 @@ export class CheckoutComponent {
 			?.setValue(input, { emitEvent: false });
 	}
 
+	formatName(event: any): void {
+		let input = event.target.value;
+		input = input.replace(/[^a-zA-Z\s]/gi, '');
+		this.datiPersonali
+			.get('nome')
+			?.setValue(input, { emitEvent: false });
+	}
+
 	onSubmit() {
 		this.isSubmitted = true;
 		if (this.datiPagamento.valid) {
