@@ -25,4 +25,8 @@ export class StoricoOrdiniComponent {
 			});
 		});
 	}
+
+	nProdotti(order:DatiCheckout):Number {
+		return order.details.reduce((sum, item) => sum + item.quantity, 0);
+	}
 }
