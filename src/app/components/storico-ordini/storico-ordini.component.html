@@ -22,6 +22,7 @@
 				data-bs-parent="#accordion-storico-ordini"
 			>
 				<div class="accordion-body bg-black rounded">
+					<div *ngIf="listaOrdini.length===0">Nessun ordine precedente</div>
 					<div
 						class="card-storico shadow rounded p-3"
 						*ngFor="let order of listaOrdini"
