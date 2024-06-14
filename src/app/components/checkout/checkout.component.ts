@@ -22,8 +22,13 @@ import { ToastrService } from 'ngx-toastr';
 	styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent {
+	// Flag per attivare o disattivare la visualizzazione del form di pagamento
 	switch: boolean = false;
+	
+	// Flag per controllare se il modulo è stato effettivamente inviato
 	isSubmitted: boolean = false;
+
+	// FormGroup per i dati personali
 	datiPersonali: FormGroup = new FormGroup({
 		nome: new FormControl<string>('', [Validators.required, Validators.pattern(/^[a-zA-Z\s']+$/)]),
 		cognome: new FormControl<string>('', [Validators.required, Validators.pattern(/^[a-zA-Z\s']+$/)]),
@@ -33,16 +38,22 @@ export class CheckoutComponent {
 		]),
 		indirizzo: new FormControl<string>('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s',.-/]+$/)]),
 	});
+
+	// FormGroup per i dati di pagamento
 	datiPagamento: FormGroup = new FormGroup({
+		// Numero della carta di credito
 		cardNumber: new FormControl<string>('', [
 			Validators.required,
 			Validators.pattern('^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$'),
 		]),
+		// Nome del titolare della carta di credito
 		cardHolder: new FormControl<string>('', [Validators.required, Validators.pattern(/^[a-zA-Z\s']+$/)]),
+		// Scadenza della carta di credito
 		expirationDate: new FormControl<string>('', [
 			Validators.required,
 			Validators.pattern('^(0[1-9]|1[0-2])/([0-9]{2})$'),
 		]),
+		// Codice di verifica della carta di credito
 		cvv: new FormControl<string>('', [
 			Validators.required,
 			Validators.pattern('^[0-9]{3}$'),
@@ -61,12 +72,14 @@ export class CheckoutComponent {
 		}
 	}
 
+	// Funzione per attivare o disattivare il form di pagamento
 	switchForm(): void {
 		if (this.datiPersonali.valid) {
 			this.switch = !this.switch;
 		}
 	}
 
+	// Funzione per controllare il numero della carta di credito
 	formatCardNumber(event: any): void {
 		let input = event.target.value.replace(/\D/g, '');
 		input = input.substring(0, 16);
@@ -76,6 +89,7 @@ export class CheckoutComponent {
 			?.setValue(input, { emitEvent: false });
 	}
 
+	// Funzione per controllare la data di scadenza della carta di credito
 	formatExpirationDate(event: any): void {
 		let input = event.target.value.replace(/\D/g, '');
 		if (input.length >= 3) {
@@ -86,6 +100,7 @@ export class CheckoutComponent {
 			?.setValue(input, { emitEvent: false });
 	}
 
+	// Funzione per controllare il codice di verifica della carta di credito
 	formatCvv(event: any): void {
 		let input = event.target.value.replace(/\D/g, '');
 		input = input.substring(0, 3);
@@ -94,6 +109,7 @@ export class CheckoutComponent {
 			?.setValue(input, { emitEvent: false });
 	}
 
+	// Funzione per controllare il nome del cliente
 	formatName(event: any): void {
 		let input = event.target.value;
 		input = input.replace(/[^a-zA-Z\s]/gi, '');
@@ -102,51 +118,10 @@ export class CheckoutComponent {
 			?.setValue(input, { emitEvent: false });
 	}
 
+	// Funzione per inviare l'ordine
 	onSubmit() {
 		this.isSubmitted = true;
 		if (this.datiPagamento.valid) {
-			let carta: metodoPagamento = {
-				number: this.datiPagamento
-					.get('cardNumber')
-					?.value.replace(/\s/g, ''),
-				ownerName: this.datiPagamento.get('cardHolder')?.value,
-				expire: this.datiPagamento
-					.get('expirationDate')
-					?.value.replace(/\//g, ''),
-				cvv: parseInt(this.datiPagamento.get('cvv')?.value),
-			};
-			let oggettiComprati: OggettiComprati[] =
-				this.carrelloService.getItemsCheckout();
-			let dati: DatiCheckout = {
-				clientName: `${this.datiPersonali.get('nome')?.value} ${
-					this.datiPersonali.get('cognome')?.value
-				}`,
-				address: this.datiPersonali.get('indirizzo')?.value,
-				email: this.datiPersonali.get('email')?.value,
-				totalPrice: this.carrelloService.getTotale(),
-				payment: carta,
-				details: oggettiComprati,
-			};
-			this.checkoutService.inviaOrdine(dati).subscribe({
-				next: (response) => {
-					this.notify.success(
-						`Ordine numero ${response} inviato con successo`
-					);
-					this.checkoutService.salvaOrdine(Number(response));
-					this.carrelloService.svuota();
-					this.router.navigate(['/']);
-				},
-				error: (error) => {
-					this.notify.error(
-						error.error,
-						"Errore nell'invio dell'ordine"
-					);
-				},
-			});
-		} else {
-			this.notify.error(
-				'Per favore, completa tutti i campi obbligatori.'
-			);
 		}
 	}
 }

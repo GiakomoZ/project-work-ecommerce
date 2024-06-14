@@ -4,13 +4,16 @@ import { Injectable } from '@angular/core';
 	providedIn: 'root',
 })
 export class LocalStorageService {
+	// Costruttore vuoto
 	constructor() {}
 
+	// Salva il valore specificato nel local storage con la chiave specificata
 	save(key:string, value:string) {
 		localStorage.setItem(key, value);
   }
   
-  get(key:string) {
+  // Restituisce il valore associato alla chiave specificata nel local storage
+	get(key:string) {
     return localStorage.getItem(key);
   }
 }

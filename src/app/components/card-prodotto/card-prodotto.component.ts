@@ -29,9 +29,11 @@ export class CardProdottoComponent {
 	) {}
 
 	addToCart() {
+		// Aggiunge il prodotto al carrello e mostra un messaggio di successo
 		if (this.product) {
 			this.carrelloService.addToCart(this.product);
 			this.notify.success('Prodotto aggiunto al carrello');
 		}
 	}
+
 }
