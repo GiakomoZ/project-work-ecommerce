@@ -22,7 +22,6 @@ import { StoricoOrdiniComponent } from '../storico-ordini/storico-ordini.compone
 export class CarrelloComponent {
 	carrello: Carrello[] = [];
 	constructor(public carrelloService: CarrelloService) {
-		// Recupera i prodotti dal servizio del carrello e li assegna al campo carrello
 		this.carrello = this.carrelloService.getItems();
 	}
 }

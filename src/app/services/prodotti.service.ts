@@ -8,7 +8,6 @@ import { Prodotto } from '../models/prodotto';
 	providedIn: 'root',
 })
 export class ProdottiService {
-	// URL dell'API
 	private apiUrl = 'https://projectworkapi-z5nzzkwikq-oc.a.run.app';
 
 	constructor(private http: HttpClient) {}
@@ -18,7 +17,6 @@ export class ProdottiService {
 		return this.http.get<Prodotto>(`${this.apiUrl}/products/${id}`);
 	}
 
-	// Cerca prodotti tramite query e pagina
 	searchProducts(query: string, categoria: number, page: number) {
 		if (categoria != 0) {
 			return this.http

@@ -39,92 +39,74 @@ export class ListaProdottiComponent implements OnInit {
 		this.loadCategories();
 	}
 
-	// Metodo chiamato quando il componente viene creato
 	ngOnInit() {
-		// parametro 'cat' dalla route convertito in numero, altrimenti imposto a 0
 		this.choosenCat =
 			Number(this.route.snapshot.queryParamMap.get('cat')) || 0;
-
-		// Carico i prodotti con la pagina corrente
 		this.loadProducts(this.paginaCorrente);
 	}
 
-	// Carica le categorie dal servizio
 	loadCategories() {
 		this.categorieService.getAll().subscribe({
-
-			// Metodo chiamato quando viene ricevuto la risposta dal servizio
-			next: (data: Categoria[]) => (this.categorie = data), // Assegno le categorie ricevute
-
-			// Metodo chiamato quando si verifica un errore durante la chiamata al servizio
+			next: (data: Categoria[]) => (this.categorie = data),
 			error: (e) =>
-				this.notify.error('Errore nel caricamento delle categorie'), // Mostro un messaggio di errore
+				this.notify.error('Errore nel caricamento delle categorie'),
 		});
 	}
 
-	// Cambia la categoria selezionata
 	switchCategory(cat: string) {
-		this.choosenCat = Number(cat); // categoria in numero
-		this.router.navigateByUrl('/shop?cat='+this.choosenCat); // Reindirizzs all'url di base con il parametro 'cat'
-		this.loadProducts(1,"",cat); // Carics i prodotti con la categoria selezionata
+		this.choosenCat = Number(cat);
+		this.router.navigateByUrl('/shop?cat='+this.choosenCat)
+		this.loadProducts(1,"",cat);
 	}
 
-	// Carica i prodotti in base alla pagina, query e categoria
 	loadProducts(page: number, query: string = '', cat: string = '') {
 		
 
-		this.searchQuery = query; // Assegno la query di ricerca
+		this.searchQuery = query;
 		if (cat === '') {
-			cat = String(this.choosenCat); // Se la categoria non è specificata, uso quella corrente
+			cat = String(this.choosenCat);
 		} else {
-			this.choosenCat = Number(cat); // Altrimenti converto la categoria in numero
+			this.choosenCat = Number(cat);
 		}
-		const categoria = Number(cat); // Converto la categoria in numero
+		const categoria = Number(cat);
 		this.productService.searchProducts(query, categoria, page).subscribe({
-			// Metodo chiamato quando viene ricevuto la risposta dal servizio
 			next: (data: ProdottoRisposta) => {
-				this.prodotti = data.result; // Assegno i prodotti ricevuti
-				this.nProdotti = data.totalRecordsCount; // Assegno il numero totale di prodotti
-				this.nPagine = Math.ceil(this.nProdotti / this.nProdPerPagina); // Calcolo il numero totale di pagine
+				this.prodotti = data.result;
+				this.nProdotti = data.totalRecordsCount;
+				this.nPagine = Math.ceil(this.nProdotti / this.nProdPerPagina);
 				this.pages = Array.from(
 					{ length: this.nPagine },
 					(_, i) => i + 1
-				); // Creo un array con le pagine
+				);
 			},
-			// Metodo chiamato quando si verifica un errore durante la chiamata al servizio
 			error: (e) =>
-				this.notify.error('Errore nel caricamento dei prodotti'), // Mostro un messaggio di errore
+				this.notify.error('Errore nel caricamento dei prodotti'),
 		});
 	}
 
-	//#region Metodi di paginazione
-	// Vai alla pagina specificata
+	//#region paginazione
 	goTo(page: number) {
-		if (page > 0 && page <= this.nPagine) { // Verifico che la pagina sia valida
-			this.paginaCorrente = page; // Assegno la pagina corrente
-			this.loadProducts(page); // Carico i prodotti con la pagina specificata
-			this.scrollToTop(); // Torno in alto della pagina
+		if (page > 0 && page <= this.nPagine) {
+			this.paginaCorrente = page;
+			this.loadProducts(page);
+			this.scrollToTop();
 		}
 	}
 
-	// Verifica se sia la prima pagina
 	isFirstPage(): boolean {
-		return this.paginaCorrente === 1; // Ritorno true se la pagina corrente è 1
+		return this.paginaCorrente === 1;
 	}
 
-	// Verifica se sia l'ultima pagina
 	isLastPage(): boolean {
-		return this.paginaCorrente === this.nPagine; // Ritorno true se la pagina corrente è uguale al numero totale di pagine
+		return this.paginaCorrente === this.nPagine;
 	}
 
-	// Vai alla pagina successiva o precedente
 	switchPage(step: number) {
-		this.goTo(this.paginaCorrente + step); // Vado alla pagina corrente più lo step specificato
+		this.goTo(this.paginaCorrente + step);
 	}
 
-	// Torna in alto della pagina
 	scrollToTop() {
-		window.scrollTo(0, 0); // Torno in alto della pagina
+		window.scrollTo(0, 0);
 	}
 	//#endregion
 }
